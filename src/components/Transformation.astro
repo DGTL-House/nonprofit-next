@@ -1,0 +1,85 @@
+---
+import { BOOK_HREF, CTA_PRIMARY } from "../consts";
+
+// Block 6 — Transformation (Before / After)
+const rows = [
+  {
+    before: "You don't know where the budget is leaking",
+    after: "You know exactly what's broken in your account — and why",
+  },
+  {
+    before: "You're guessing what to fix first",
+    after:
+      "You understand why your grant isn't spending the full $10K (low CTR, wrong keywords, structure issues)",
+  },
+  {
+    before: "You don't know how much could realistically be spent",
+    after:
+      "You see the realistic budget ceiling for your niche — and what's blocking you from reaching it",
+  },
+  {
+    before: "You're not sure the account meets Google's policies",
+    after:
+      "You know whether your account is at risk of suspension — and what triggers it",
+  },
+  {
+    before: "No one to talk to — no expert nearby",
+    after:
+      "You get an honest expert opinion from an agency that works only with nonprofits",
+  },
+  {
+    before: "The grant sits idle",
+    after:
+      "You see the specific path forward — and whether it makes sense to walk it with us",
+  },
+];
+---
+
+<!-- Block 6 — Transformation -->
+<section id="transformation" class="relative py-16 sm:py-24 overflow-hidden bg-[#ffffff]">
+  <div class="max-w-5xl mx-auto px-4 sm:px-6">
+    <div class="text-center max-w-3xl mx-auto mb-12 sm:mb-16 reveal">
+      <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black text-[#161514] leading-tight mb-4">
+        What changes <span class="gradient-text-lime">after the audit</span>
+      </h2>
+      <p class="text-[#52504c] text-base sm:text-xl">
+        You don't get a 'good/bad' grade. You get a map: where you are now, and
+        where you can go.
+      </p>
+    </div>
+
+    <div class="reveal rounded-3xl overflow-hidden border border-[#ebe9e0] shadow-[0_18px_50px_rgba(63,80,40,0.08)]">
+      <!-- Header row -->
+      <div class="grid grid-cols-2">
+        <div class="ba-before-head px-4 sm:px-6 py-4 text-center font-bold text-sm sm:text-lg">
+          BEFORE the audit
+        </div>
+        <div class="ba-after-head px-4 sm:px-6 py-4 text-center font-bold text-sm sm:text-lg">
+          AFTER the audit
+        </div>
+      </div>
+
+      <!-- Rows -->
+      {
+        rows.map((row, i) => (
+          <div class={`grid grid-cols-2 ${i % 2 === 1 ? "" : ""}`}>
+            <div class="ba-before-cell px-4 sm:px-6 py-5 border-t border-[#f0d9dc] flex items-start gap-2.5">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#9b2d3f" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" class="shrink-0 mt-0.5" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" /></svg>
+              <span class="text-sm sm:text-base leading-snug">{row.before}</span>
+            </div>
+            <div class="ba-after-cell px-4 sm:px-6 py-5 border-t border-[#dceadf] flex items-start gap-2.5">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1f5f43" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" class="shrink-0 mt-0.5" aria-hidden="true"><polyline points="20 6 9 17 4 12" /></svg>
+              <span class="text-sm sm:text-base leading-snug font-medium">{row.after}</span>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+
+    <div class="flex justify-center mt-12 reveal">
+      <a href={BOOK_HREF} class="btn-primary text-base sm:text-2xl !py-3 sm:!py-4 !px-8 sm:!px-10">
+        {CTA_PRIMARY} →
+      </a>
+    </div>
+  </div>
+</section>

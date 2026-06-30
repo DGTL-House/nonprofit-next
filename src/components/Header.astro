@@ -1,0 +1,133 @@
+---
+import { BOOK_HREF, CTA_PRIMARY, SWITCH_BLOCKS } from "../consts";
+---
+
+<header
+  id="site-header"
+  class="fixed top-0 left-0 right-0 z-50 transition-[background-color,padding,border-color] duration-300 bg-transparent py-5 border-b border-transparent"
+>
+  <div
+    class="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between gap-4"
+  >
+    <!-- Logo -->
+    <a href="#top" class="flex items-center group shrink-0" aria-label="DGTL House — home">
+      <img
+        src="/nonprofit-logo.svg"
+        alt="DGTL House — Google Ad Grants for Nonprofits"
+        width="150"
+        height="30"
+        class="h-7 sm:h-8 w-auto group-hover:opacity-90 transition-opacity duration-300"
+      />
+    </a>
+
+    <!-- Desktop nav -->
+    <nav aria-label="Main navigation" class="hidden md:flex items-center gap-1">
+      {
+        SWITCH_BLOCKS.map((link) => (
+          <a
+            href={link.href}
+            class="px-4 py-2 text-[#52504c] hover:text-[#161514] text-base lg:text-lg font-medium rounded-lg hover:bg-[#161514]/[0.05] transition-all duration-200"
+          >
+            {link.label}
+          </a>
+        ))
+      }
+    </nav>
+
+    <!-- Desktop CTA -->
+    <div class="hidden md:flex items-center gap-3 shrink-0">
+      <a href={BOOK_HREF} class="btn-primary !text-base lg:!text-lg !py-2.5 !px-5">
+        {CTA_PRIMARY}
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"></polyline></svg>
+      </a>
+    </div>
+
+    <!-- Mobile toggle -->
+    <button
+      id="mobile-toggle"
+      aria-label="Open menu"
+      aria-expanded="false"
+      class="md:hidden p-2 rounded-lg hover:bg-[#161514]/[0.05] transition-colors text-[#161514]"
+    >
+      <svg id="icon-menu" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+      <svg id="icon-close" class="hidden" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+    </button>
+  </div>
+
+  <!-- Mobile menu -->
+  <div
+    id="mobile-menu"
+    class="hidden md:hidden border-t border-[#ebe9e0] bg-[#ffffff]/98 backdrop-blur-lg"
+  >
+    <div class="max-w-7xl mx-auto px-4 py-4 flex flex-col gap-1">
+      {
+        SWITCH_BLOCKS.map((link) => (
+          <a
+            href={link.href}
+            data-mobile-link
+            class="text-left px-4 py-3 text-[#52504c] hover:text-[#161514] text-base font-medium rounded-lg hover:bg-[#161514]/[0.05] transition-all"
+          >
+            {link.label}
+          </a>
+        ))
+      }
+      <div class="pt-3 border-t border-[#ebe9e0] mt-2">
+        <a
+          href={BOOK_HREF}
+          data-mobile-link
+          class="btn-primary w-full justify-center !text-base !py-2.5 !px-5"
+        >
+          {CTA_PRIMARY}
+        </a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<script is:inline>
+  (function () {
+    const header = document.getElementById("site-header");
+    const toggle = document.getElementById("mobile-toggle");
+    const menu = document.getElementById("mobile-menu");
+    const iconMenu = document.getElementById("icon-menu");
+    const iconClose = document.getElementById("icon-close");
+
+    // Scroll: solid cream + blur once the user leaves the hero.
+    let ticking = false;
+    function onScroll() {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(function () {
+        const scrolled = window.scrollY > 40;
+        header.classList.toggle("bg-[#ffffff]/95", scrolled);
+        header.classList.toggle("backdrop-blur-lg", scrolled);
+        header.classList.toggle("border-[#ebe9e0]", scrolled);
+        header.classList.toggle("py-3", scrolled);
+        header.classList.toggle("py-5", !scrolled);
+        header.classList.toggle("border-transparent", !scrolled);
+        ticking = false;
+      });
+    }
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+
+    // Mobile menu open/close.
+    function closeMenu() {
+      menu.classList.add("hidden");
+      iconMenu.classList.remove("hidden");
+      iconClose.classList.add("hidden");
+      toggle.setAttribute("aria-expanded", "false");
+      toggle.setAttribute("aria-label", "Open menu");
+    }
+    toggle.addEventListener("click", function () {
+      const open = menu.classList.toggle("hidden");
+      iconMenu.classList.toggle("hidden", !open);
+      iconClose.classList.toggle("hidden", open);
+      toggle.setAttribute("aria-expanded", String(!open));
+      toggle.setAttribute("aria-label", open ? "Open menu" : "Close menu");
+    });
+    document.querySelectorAll("[data-mobile-link]").forEach(function (link) {
+      link.addEventListener("click", closeMenu);
+    });
+  })();
+</script>

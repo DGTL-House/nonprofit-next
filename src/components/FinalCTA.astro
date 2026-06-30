@@ -1,0 +1,100 @@
+---
+import { BOOK_HREF, CTA_PRIMARY } from "../consts";
+
+const guarantees = [
+  "Free",
+  "No commitment",
+  "Actionable plan, yours to keep",
+  "Nonprofit expertise",
+];
+---
+
+<!-- Block 8 — Final CTA + Urgency -->
+<section id="book" class="relative py-16 sm:py-24 overflow-hidden bg-[#ffffff]">
+  <div class="absolute inset-0 grid-bg opacity-25 pointer-events-none"></div>
+  <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[480px] bg-[#aac976]/15 rounded-full blur-[170px] pointer-events-none"></div>
+
+  <div class="relative max-w-3xl mx-auto px-4 sm:px-6 text-center">
+    <div class="reveal">
+      <!-- Dynamic counter -->
+      <div class="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-[#b33d27]/8 border border-[#b33d27]/20 mb-6">
+        <span class="relative flex h-2.5 w-2.5">
+          <span class="absolute inline-flex h-full w-full rounded-full bg-[#b33d27] opacity-50 animate-ping"></span>
+          <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#b33d27]"></span>
+        </span>
+        <span id="spots-counter" class="text-[#b33d27] text-sm sm:text-base font-bold">
+          This month — limited spots out of 10
+        </span>
+      </div>
+
+      <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black text-[#161514] leading-tight mb-5">
+        Find out in 30 minutes what's stopping your grant from
+        <span class="gradient-text-lime">working</span>
+      </h2>
+
+      <p class="text-[#52504c] text-base sm:text-xl leading-relaxed max-w-2xl mx-auto mb-6">
+        We take on only <strong class="text-[#161514]">10 audits per month</strong> —
+        because quality comes first. It's free, and the plan is yours to keep.
+      </p>
+
+      <!-- Guarantee recap -->
+      <div class="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 mb-8">
+        {
+          guarantees.map((g) => (
+            <span class="inline-flex items-center gap-1.5 text-[#3f5028] text-sm sm:text-base font-semibold">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#3f5028" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12" /></svg>
+              {g}
+            </span>
+          ))
+        }
+      </div>
+
+      <!-- CTA -->
+      <div class="flex flex-col items-center gap-3">
+        <a href={BOOK_HREF} class="btn-primary attention-pulse text-base sm:text-2xl !py-3.5 sm:!py-4 !px-8 sm:!px-12">
+          {CTA_PRIMARY} →
+        </a>
+        <div class="flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-[#7a7770] text-sm sm:text-base font-medium">
+          <span>No pressure</span>
+          <span class="w-1 h-1 rounded-full bg-[#cfcfcf]"></span>
+          <span>No commitment</span>
+          <span class="w-1 h-1 rounded-full bg-[#cfcfcf]"></span>
+          <span>2 short calls</span>
+        </div>
+      </div>
+
+      <!-- Scarcity + waitlist notes -->
+      <div class="mt-10 max-w-xl mx-auto space-y-3">
+        <p class="text-[#9a9890] text-xs sm:text-sm leading-relaxed">
+          Each audit takes 8–10 hours of senior analyst time. To keep the quality
+          high, we cap the number.
+        </p>
+        <div class="urgency-box px-5 py-3">
+          <p class="text-[#52504c] text-sm">
+            If all spots are taken — we'll add you to the waitlist for next month.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script is:inline>
+  (function () {
+    // "[Month] — [N] spots remaining out of 10". N tapers as the month
+    // progresses so the scarcity reads as live without a backend.
+    var el = document.getElementById("spots-counter");
+    if (!el) return;
+    var now = new Date();
+    var month = now.toLocaleString("en-US", { month: "long" });
+    var day = now.getDate();
+    var daysInMonth = new Date(
+      now.getFullYear(),
+      now.getMonth() + 1,
+      0,
+    ).getDate();
+    // 10 spots at the start of the month → ~1 near the end.
+    var left = Math.max(1, Math.round(10 - (day / daysInMonth) * 9));
+    el.textContent = month + " — " + left + " spots remaining out of 10";
+  })();
+</script>

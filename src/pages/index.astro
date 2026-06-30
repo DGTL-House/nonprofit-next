@@ -1,0 +1,31 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import BlockSwitcher from "../components/BlockSwitcher.astro";
+import Hero from "../components/Hero.astro";
+import CaseStudies from "../components/CaseStudies.astro";
+import Pain from "../components/Pain.astro";
+import WhoWeAre from "../components/WhoWeAre.astro";
+import SampleAudit from "../components/SampleAudit.astro";
+import Transformation from "../components/Transformation.astro";
+import HowItWorks from "../components/HowItWorks.astro";
+import FinalCTA from "../components/FinalCTA.astro";
+import Footer from "../components/Footer.astro";
+---
+
+<Layout>
+  <span id="top" aria-hidden="true"></span>
+  <Header />
+  <main id="main-content" aria-label="Main content">
+    <Hero />
+    <CaseStudies />
+    <Pain />
+    <WhoWeAre />
+    <SampleAudit />
+    <Transformation />
+    <HowItWorks />
+    <FinalCTA />
+  </main>
+  <Footer />
+  <BlockSwitcher />
+</Layout>

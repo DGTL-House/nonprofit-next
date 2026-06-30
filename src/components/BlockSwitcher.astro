@@ -1,0 +1,88 @@
+---
+import { SWITCH_BLOCKS } from "../consts";
+---
+
+<!--
+  Floating block switcher — fulfils the brief's requirement to jump between
+  Case Studies / How It Works / Who We Are from any position on the page.
+  Appears after the hero; highlights the section currently in view.
+-->
+<div
+  id="block-switcher"
+  class="block-switcher fixed bottom-5 left-1/2 -translate-x-1/2 z-40 px-2 sm:px-2.5"
+  aria-label="Jump to section"
+>
+  <div
+    class="flex items-center gap-1 rounded-full bg-[#ffffff]/95 backdrop-blur-lg border border-[#ebe9e0] shadow-[0_10px_30px_rgba(63,80,40,0.14)] p-1.5"
+  >
+    <span
+      class="hidden sm:flex items-center pl-3 pr-1 text-[11px] font-bold uppercase tracking-wider text-[#9a9890]"
+    >
+      Jump to
+    </span>
+    {
+      SWITCH_BLOCKS.map((link) => (
+        <a
+          href={link.href}
+          data-switch={link.href}
+          class="px-3.5 sm:px-4 py-2 rounded-full text-[13px] sm:text-sm font-semibold text-[#52504c] hover:text-[#161514] hover:bg-[#f0eee6] transition-colors whitespace-nowrap"
+        >
+          {link.label}
+        </a>
+      ))
+    }
+  </div>
+</div>
+
+<script is:inline>
+  (function () {
+    const bar = document.getElementById("block-switcher");
+    if (!bar) return;
+    const links = Array.prototype.slice.call(
+      bar.querySelectorAll("[data-switch]"),
+    );
+    const ids = links.map(function (l) {
+      return l.getAttribute("data-switch").slice(1);
+    });
+    const sections = ids
+      .map(function (id) {
+        return document.getElementById(id);
+      })
+      .filter(Boolean);
+
+    function setActive(id) {
+      links.forEach(function (l) {
+        const on = l.getAttribute("data-switch") === "#" + id;
+        l.classList.toggle("bg-[#f0eee6]", on);
+        l.classList.toggle("text-[#3f5028]", on);
+        l.setAttribute("aria-current", on ? "true" : "false");
+      });
+    }
+
+    // Show the switcher only after the hero scrolls away.
+    const hero = document.getElementById("hero");
+    function onScroll() {
+      const past = hero
+        ? window.scrollY > hero.offsetHeight - 120
+        : window.scrollY > 600;
+      bar.classList.toggle("is-active", past);
+    }
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+
+    // Track which section is in view to highlight the matching pill.
+    if ("IntersectionObserver" in window && sections.length) {
+      const io = new IntersectionObserver(
+        function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) setActive(entry.target.id);
+          });
+        },
+        { threshold: 0.4, rootMargin: "-20% 0px -40% 0px" },
+      );
+      sections.forEach(function (s) {
+        io.observe(s);
+      });
+    }
+  })();
+</script>

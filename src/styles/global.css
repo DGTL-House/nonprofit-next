@@ -1,0 +1,573 @@
+@import "tailwindcss";
+
+/* ============================================================
+   Design tokens — ported verbatim from the `nonprofit` project
+   (grants.dgtl-house.com). Cream/light theme + lime-olive accent.
+
+   The named-utility overrides below are intentional: the reference
+   codebase keeps class names from its original dark theme
+   (text-white, bg-emerald-500, text-slate-400 …) and re-maps them
+   to the cream/lime palette. Keeping the same mapping here means
+   every styling pattern from `nonprofit` renders identically.
+   ============================================================ */
+
+@theme {
+    --font-sans: "Lexend", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    --font-display: "Neue Montreal", "Lexend", -apple-system, BlinkMacSystemFont, sans-serif;
+
+    /* Brand palette */
+    --color-cream-50: #ffffff;
+    --color-cream-100: #f8f7f3;
+    --color-cream-200: #f5f4f0;
+    --color-cream-300: #f0eee6;
+    --color-cream-400: #ebe9e0;
+    --color-cream-500: #dbdbd8;
+    --color-cream-600: #cfcfcf;
+
+    --color-ink-900: #161514;
+    --color-ink-700: #2a2a26;
+    --color-ink-500: #52504c;
+    --color-ink-400: #7a7770;
+    --color-ink-300: #9a9890;
+
+    --color-lime-100: #eaf6cc;
+    --color-lime-200: #d8f1a5;
+    --color-lime-300: #c4ed82;
+    /* primary accent */
+    --color-lime-400: #aac976;
+    /* mid */
+    --color-lime-700: #3f5028;
+    /* dark accent / accent text */
+    --color-lime-800: #2d3a1c;
+
+    /* ------- Tailwind palette overrides (re-map named utilities) ------- */
+    --color-white: #161514;
+    /* "white" text becomes dark ink on cream bg */
+    --color-black: #0a0a09;
+
+    --color-slate-50: #ffffff;
+    --color-slate-100: #f8f7f3;
+    --color-slate-200: #161514;
+    --color-slate-300: #1e1d1b;
+    --color-slate-400: #52504c;
+    --color-slate-500: #7a7770;
+    --color-slate-600: #9a9890;
+    --color-slate-700: #cfcfcf;
+    --color-slate-800: #dbdbd8;
+    --color-slate-900: #ebe9e0;
+
+    /* Emerald → olive/lime */
+    --color-emerald-50: #f3f8e6;
+    --color-emerald-100: #eaf6cc;
+    --color-emerald-200: #d8f1a5;
+    --color-emerald-300: #c4ed82;
+    --color-emerald-400: #3f5028;
+    --color-emerald-500: #aac976;
+    --color-emerald-600: #3f5028;
+    --color-emerald-700: #3f5028;
+    --color-emerald-800: #2d3a1c;
+    --color-emerald-900: #1f2913;
+
+    /* Teal → also olive/lime to keep gradients on-brand */
+    --color-teal-400: #aac976;
+    --color-teal-500: #aac976;
+    --color-teal-600: #3f5028;
+    --color-teal-700: #3f5028;
+
+    /* Yellow / amber → use lime so gold accents blend with brand */
+    --color-yellow-200: #d8f1a5;
+    --color-yellow-300: #c4ed82;
+    --color-yellow-400: #aac976;
+    --color-yellow-500: #aac976;
+    --color-yellow-600: #3f5028;
+    --color-yellow-700: #3f5028;
+    --color-amber-300: #c4ed82;
+    --color-amber-400: #aac976;
+    --color-amber-500: #aac976;
+    --color-amber-600: #3f5028;
+
+    /* Blue / purple — reference site doesn't use them; map to neutral brand tones */
+    --color-blue-300: #aac976;
+    --color-blue-400: #3f5028;
+    --color-blue-500: #aac976;
+    --color-blue-600: #3f5028;
+    --color-blue-700: #3f5028;
+    --color-purple-300: #aac976;
+    --color-purple-400: #3f5028;
+    --color-purple-500: #aac976;
+    --color-purple-600: #3f5028;
+    --color-purple-700: #3f5028;
+    --color-indigo-500: #aac976;
+    --color-sky-500: #aac976;
+
+    /* Red / orange — keep for warnings but warmer/muted */
+    --color-red-300: #e89b8a;
+    --color-red-400: #c44a32;
+    --color-red-500: #b33d27;
+    --color-red-600: #8a2d1c;
+    --color-orange-300: #e8b88a;
+    --color-orange-400: #d18a3f;
+    --color-orange-500: #b87029;
+}
+
+/* ============================================================
+   Base layout
+   ============================================================ */
+
+* {
+    box-sizing: border-box;
+}
+
+button {
+    cursor: pointer;
+}
+
+a {
+    cursor: pointer;
+}
+
+html {
+    scroll-behavior: smooth;
+    /* keep anchored sections clear of the fixed header */
+    scroll-padding-top: 96px;
+}
+
+body {
+    background-color: #ffffff;
+    color: #161514;
+    font-family: "Lexend", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+    letter-spacing: -0.005em;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: "Neue Montreal", "Lexend", -apple-system, BlinkMacSystemFont, sans-serif;
+    letter-spacing: -0.02em;
+}
+
+.font-mono,
+code,
+kbd,
+pre,
+samp {
+    font-family: "Chivo Mono", ui-monospace, SFMono-Regular, monospace;
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #ebe9e0;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #aac976;
+    border-radius: 4px;
+}
+
+/* ============================================================
+   Reusable components (ported from `nonprofit`)
+   ============================================================ */
+
+.gradient-text {
+    background: linear-gradient(135deg, #161514 0%, #52504c 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.gradient-text-gold {
+    background: linear-gradient(135deg, #161514 0%, #52504c 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.gradient-text-lime {
+    background: linear-gradient(135deg, #3f5028 0%, #aac976 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.glow-green {
+    box-shadow:
+        0 8px 24px rgba(170, 201, 118, 0.30),
+        0 0 0 1px rgba(63, 80, 40, 0.08);
+}
+
+.glow-gold {
+    box-shadow:
+        0 8px 24px rgba(196, 237, 130, 0.45),
+        0 0 0 1px rgba(63, 80, 40, 0.08);
+}
+
+.grid-bg {
+    background-image:
+        linear-gradient(rgba(63, 80, 40, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(63, 80, 40, 0.05) 1px, transparent 1px);
+    background-size: 64px 64px;
+}
+
+.glass-card {
+    background: #ffffff;
+    border: 1px solid #ebe9e0;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+}
+
+/* --------- Buttons (pill-shape, lime accent like reference) --------- */
+
+.btn-primary {
+    background: #b5e550;
+    color: #3f5028;
+    font-family: "Lexend", sans-serif;
+    font-weight: 600;
+    padding: 14px 28px;
+    border-radius: 999px;
+    border: 1px solid #b5e550;
+    cursor: pointer;
+    transition: background 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    text-decoration: none;
+    font-size: 16px;
+    letter-spacing: -0.01em;
+    position: relative;
+    overflow: hidden;
+}
+
+@media (min-width: 640px) {
+    .btn-primary {
+        font-size: 24px;
+    }
+}
+
+.btn-primary:hover {
+    background: #a3d444;
+    border-color: #a3d444;
+    transform: translateY(-2px);
+    box-shadow: 0 12px 28px rgba(170, 201, 118, 0.4);
+}
+
+.btn-secondary {
+    background: transparent;
+    color: #3f5028;
+    font-family: "Lexend", sans-serif;
+    font-weight: 600;
+    padding: 13px 26px;
+    border-radius: 999px;
+    border: 1.5px solid #3f5028;
+    cursor: pointer;
+    transition: background 0.25s ease, color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+@media (min-width: 640px) {
+    .btn-secondary {
+        font-size: 24px;
+    }
+}
+
+.btn-secondary:hover {
+    background: #3f5028;
+    color: #f8f7f3;
+    transform: translateY(-2px);
+    box-shadow: 0 12px 28px rgba(63, 80, 40, 0.25);
+}
+
+.section-divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(63, 80, 40, 0.18), transparent);
+}
+
+/* --------- Highlight boxes --------- */
+
+.guarantee-box {
+    background: linear-gradient(135deg, rgba(196, 237, 130, 0.36) 0%, rgba(170, 201, 118, 0.18) 100%);
+    border: 1px solid #aac976;
+    border-radius: 24px;
+}
+
+.urgency-box {
+    background: #ebe9e0;
+    border: 1px solid #dbdbd8;
+    border-radius: 16px;
+}
+
+/* --------- Animations (ported) --------- */
+
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-12px);
+    }
+}
+
+.float-anim {
+    animation: float 3.5s ease-in-out infinite;
+}
+
+@keyframes pulse-green {
+
+    0%,
+    100% {
+        box-shadow: 0 0 0 0 rgba(170, 201, 118, 0.5);
+    }
+
+    50% {
+        box-shadow: 0 0 0 14px rgba(170, 201, 118, 0);
+    }
+}
+
+.pulse-green {
+    animation: pulse-green 2.2s infinite;
+}
+
+@keyframes attention-pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(170, 201, 118, 0.35);
+    }
+
+    50% {
+        transform: scale(1.02);
+        box-shadow: 0 0 0 8px rgba(170, 201, 118, 0);
+    }
+}
+
+.attention-pulse {
+    animation: attention-pulse 3.2s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .attention-pulse {
+        animation: none;
+    }
+}
+
+@keyframes gradientShift {
+
+    0%,
+    100% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+}
+
+.border-gradient {
+    position: relative;
+}
+
+.border-gradient::before {
+    content: "";
+    position: absolute;
+    inset: -1.5px;
+    background: linear-gradient(135deg, #c4ed82, #aac976, #3f5028, #c4ed82);
+    background-size: 300% 300%;
+    border-radius: inherit;
+    animation: gradientShift 4s ease infinite;
+    z-index: -1;
+}
+
+.hero-radial-glow {
+    background: radial-gradient(ellipse 80% 60% at 50% -5%, rgba(196, 237, 130, 0.45) 0%, transparent 70%);
+}
+
+/* --------- Form inputs --------- */
+input,
+textarea,
+select {
+    font-family: "Lexend", sans-serif;
+    color: #161514;
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: #9a9890;
+}
+
+/* ============================================================
+   Additions for the Audit landing (kept on-brand)
+   ============================================================ */
+
+/* Scroll-reveal — replaces framer-motion fadeUp from the reference */
+.reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.7s cubic-bezier(0.25, 0.1, 0.25, 1),
+        transform 0.7s cubic-bezier(0.25, 0.1, 0.25, 1);
+    will-change: opacity, transform;
+}
+
+.reveal.is-visible {
+    opacity: 1;
+    transform: none;
+}
+
+/* Stagger children when a container becomes visible */
+.reveal-stagger > * {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.6s cubic-bezier(0.25, 0.1, 0.25, 1),
+        transform 0.6s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.reveal-stagger.is-visible > * {
+    opacity: 1;
+    transform: none;
+}
+
+.reveal-stagger.is-visible > *:nth-child(2) { transition-delay: 0.08s; }
+.reveal-stagger.is-visible > *:nth-child(3) { transition-delay: 0.16s; }
+.reveal-stagger.is-visible > *:nth-child(4) { transition-delay: 0.24s; }
+.reveal-stagger.is-visible > *:nth-child(5) { transition-delay: 0.32s; }
+.reveal-stagger.is-visible > *:nth-child(6) { transition-delay: 0.40s; }
+
+@media (prefers-reduced-motion: reduce) {
+    .reveal,
+    .reveal-stagger > * {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+    }
+}
+
+/* Card hover lift used across blocks */
+.lift {
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.lift:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 18px 40px rgba(63, 80, 40, 0.10);
+}
+
+/* --------- Case-study carousel --------- */
+.carousel-track {
+    display: flex;
+    gap: 1.5rem;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding-bottom: 0.5rem;
+}
+
+.carousel-track::-webkit-scrollbar {
+    display: none;
+}
+
+.carousel-slide {
+    scroll-snap-align: center;
+    flex: 0 0 100%;
+}
+
+@media (min-width: 1024px) {
+    .carousel-slide {
+        flex-basis: calc(50% - 0.75rem);
+    }
+}
+
+.carousel-dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 999px;
+    background: #cfcfcf;
+    transition: background 0.3s ease, width 0.3s ease;
+}
+
+.carousel-dot[aria-current="true"] {
+    background: #3f5028;
+    width: 26px;
+}
+
+/* --------- Before / After comparison (Block 6) --------- */
+.ba-before-head {
+    background: #9b2d3f;
+    color: #ffffff;
+}
+
+.ba-after-head {
+    background: #1f5f43;
+    color: #ffffff;
+}
+
+.ba-before-cell {
+    background: #fbf0f1;
+    color: #52504c;
+}
+
+.ba-after-cell {
+    background: #eef5ef;
+    color: #161514;
+}
+
+/* --------- Floating block switcher --------- */
+.block-switcher {
+    opacity: 0;
+    transform: translateY(12px);
+    pointer-events: none;
+    transition: opacity 0.35s ease, transform 0.35s ease;
+}
+
+.block-switcher.is-active {
+    opacity: 1;
+    transform: none;
+    pointer-events: auto;
+}
+
+/* --------- Pain-card icon tile --------- */
+.pain-icon {
+    width: 2.75rem;
+    height: 2.75rem;
+    border-radius: 0.85rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(179, 61, 39, 0.08);
+}
+
+/* Lightbox for case-study screenshots */
+.lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    background: rgba(22, 21, 20, 0.82);
+    backdrop-filter: blur(4px);
+}
+
+.lightbox.is-open {
+    display: flex;
+}

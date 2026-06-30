@@ -1,0 +1,87 @@
+---
+// Block 4 — Who We Are / About Us
+const creds = [
+  {
+    title: "Deep nonprofit expertise",
+    desc: "We know the specifics that generalist agencies miss: CTR requirements, keyword targeting restrictions, Ad Grants vs Google Ads policies, typical account suspension patterns — and how to avoid them.",
+    icon: `<path d="M12 2 2 7l10 5 10-5-10-5Z"/><path d="m2 17 10 5 10-5"/><path d="m2 12 10 5 10-5"/>`,
+  },
+  {
+    title: "Google for Nonprofits Partner",
+    desc: "Official partner of the Google program. We know the requirements from the inside: CTR limits, keyword targeting policies, the nuances of Ad Grants vs Google Ads.",
+    icon: `<path d="M12 2 4 5v6c0 5.55 3.84 10.74 8 12 4.16-1.26 8-6.45 8-12V5l-8-3Z"/><path d="m9 12 2 2 4-4"/>`,
+  },
+  {
+    title: "10 years inside the program",
+    desc: "We've seen it evolve — from the earliest limits to today's requirements. We know every typical failure scenario and how to get out of it.",
+    icon: `<circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>`,
+  },
+];
+---
+
+<!-- Block 4 — Who We Are -->
+<section id="who-we-are" class="relative py-16 sm:py-24 overflow-hidden bg-[#ffffff]">
+  <div class="absolute inset-0 grid-bg opacity-30 pointer-events-none"></div>
+  <div class="absolute bottom-0 left-1/4 w-[420px] h-[420px] bg-[#aac976]/10 rounded-full blur-[140px] pointer-events-none"></div>
+
+  <div class="relative max-w-6xl mx-auto px-4 sm:px-6">
+    <div class="text-center max-w-3xl mx-auto mb-12 sm:mb-16 reveal">
+      <p class="text-[#3f5028] font-bold uppercase tracking-widest text-xs sm:text-sm mb-4">
+        Who We Are
+      </p>
+      <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black text-[#161514] leading-tight mb-5">
+        10 years with <span class="gradient-text-lime">nonprofit organizations</span>
+      </h2>
+      <p class="text-[#52504c] text-base sm:text-xl leading-relaxed">
+        DGTL House is an agency that knows Google Ad Grants from the inside.
+        10 years, 200+ nonprofits, every typical failure scenario — and how to
+        get out of it.
+      </p>
+    </div>
+
+    <!-- Stat strip -->
+    <div class="grid grid-cols-3 gap-4 max-w-2xl mx-auto mb-12 reveal">
+      {
+        [
+          { v: "10 yrs", l: "Inside the program" },
+          { v: "200+", l: "Nonprofits supported" },
+          { v: "US-wide", l: "Missions served" },
+        ].map((s) => (
+          <div class="text-center">
+            <div class="text-2xl sm:text-4xl font-black gradient-text mb-1">{s.v}</div>
+            <div class="text-[#7a7770] text-xs sm:text-sm font-medium">{s.l}</div>
+          </div>
+        ))
+      }
+    </div>
+
+    <!-- Credential cards -->
+    <div class="grid md:grid-cols-3 gap-5 reveal-stagger">
+      {
+        creds.map((c) => (
+          <div class="glass-card lift rounded-2xl p-6 sm:p-7">
+            <div class="w-12 h-12 rounded-xl bg-[#aac976]/15 flex items-center justify-center mb-5">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#3f5028" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" set:html={c.icon} />
+            </div>
+            <h3 class="text-[#161514] font-bold text-lg mb-3">{c.title}</h3>
+            <p class="text-[#52504c] text-sm sm:text-base leading-relaxed">{c.desc}</p>
+          </div>
+        ))
+      }
+    </div>
+
+    <!-- Founder note -->
+    <div class="mt-8 reveal">
+      <div class="guarantee-box p-6 sm:p-8 max-w-3xl mx-auto">
+        <div class="flex items-start gap-4">
+          <svg width="34" height="34" viewBox="0 0 24 24" fill="#aac976" class="shrink-0 opacity-60" aria-hidden="true"><path d="M9.5 4C6.46 4 4 6.46 4 9.5c0 2.7 1.94 4.95 4.5 5.41V20h3v-7.5C11.5 7.7 10.9 4 9.5 4Zm9 0C15.46 4 13 6.46 13 9.5c0 2.7 1.94 4.95 4.5 5.41V20h3v-7.5C20.5 7.7 19.9 4 18.5 4Z"/></svg>
+          <p class="text-[#161514] text-base sm:text-lg italic leading-relaxed">
+            We started in 2015 with one client. Today we support over 200
+            nonprofits across the US — and every month, more missions get the
+            visibility they deserve.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

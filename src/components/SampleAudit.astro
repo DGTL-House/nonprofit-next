@@ -1,0 +1,123 @@
+---
+// Block 5 — Sample Audit Preview.
+// Faux anonymised Google Ads dashboard with the DGTL House audit card offset
+// and slightly rotated on top, cropped at the bottom (per the brief).
+const auditFindings = [
+  { label: "Budget utilisation", value: "21% of $10K", tone: "bad" },
+  { label: "Avg. CTR", value: "3.1% (below 5%)", tone: "bad" },
+  { label: "Conversion tracking", value: "Not configured", tone: "bad" },
+  { label: "Keyword coverage", value: "40 / ~300 needed", tone: "warn" },
+  { label: "Policy / suspension risk", value: "Medium", tone: "warn" },
+];
+---
+
+<!-- Block 5 — Sample Audit Preview -->
+<section id="sample-audit" class="relative py-16 sm:py-24 overflow-hidden bg-[#f8f7f3]">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6">
+    <div class="text-center max-w-3xl mx-auto mb-12 sm:mb-16 reveal">
+      <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black text-[#161514] leading-tight mb-4">
+        Here's what your audit <span class="gradient-text-lime">looks like</span>
+      </h2>
+      <p class="text-[#52504c] text-base sm:text-xl">
+        Report + 30-minute walkthrough on Google Meet
+      </p>
+    </div>
+
+    <!-- Mockup composition -->
+    <div class="relative max-w-4xl mx-auto reveal">
+      <!-- Dashboard (background) -->
+      <div class="rounded-3xl bg-[#ffffff] border border-[#ebe9e0] shadow-[0_24px_60px_rgba(63,80,40,0.12)] overflow-hidden">
+        <!-- Faux browser bar -->
+        <div class="flex items-center gap-2 px-4 py-3 bg-[#f0eee6] border-b border-[#ebe9e0]">
+          <span class="w-3 h-3 rounded-full bg-[#e0a9a0]"></span>
+          <span class="w-3 h-3 rounded-full bg-[#e6cf9a]"></span>
+          <span class="w-3 h-3 rounded-full bg-[#aac976]"></span>
+          <span class="ml-3 text-[11px] text-[#9a9890] font-mono">ads.google.com · Grant account</span>
+        </div>
+
+        <div class="p-5 sm:p-7">
+          <div class="flex items-center justify-between mb-5">
+            <div>
+              <div class="text-[11px] uppercase tracking-wide text-[#9a9890] font-semibold">Campaigns · last 12 months</div>
+              <div class="text-[#161514] font-bold text-lg">Monthly grant spend</div>
+            </div>
+            <div class="text-right">
+              <div class="text-[#3f5028] text-2xl font-black">$9,200</div>
+              <div class="text-[11px] text-[#7a7770]">utilised / $10,000</div>
+            </div>
+          </div>
+
+          <!-- Chart -->
+          <div class="rounded-xl bg-[#f6f8ee] border border-[#e7eed5] p-3">
+            <svg viewBox="0 0 720 220" class="w-full h-36 sm:h-44" preserveAspectRatio="none" aria-hidden="true">
+              <defs>
+                <linearGradient id="audit-area" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#aac976" stop-opacity="0.32"></stop>
+                  <stop offset="100%" stop-color="#aac976" stop-opacity="0.02"></stop>
+                </linearGradient>
+              </defs>
+              <line x1="0" y1="55" x2="720" y2="55" stroke="#e7eed5" stroke-width="1"></line>
+              <line x1="0" y1="110" x2="720" y2="110" stroke="#e7eed5" stroke-width="1"></line>
+              <line x1="0" y1="165" x2="720" y2="165" stroke="#e7eed5" stroke-width="1"></line>
+              <path d="M0,195 C120,190 180,180 250,158 C320,136 360,104 430,82 C500,60 540,42 610,30 C660,22 695,18 720,16 L720,220 L0,220 Z" fill="url(#audit-area)"></path>
+              <path d="M0,195 C120,190 180,180 250,158 C320,136 360,104 430,82 C500,60 540,42 610,30 C660,22 695,18 720,16" fill="none" stroke="#3f7d4f" stroke-width="3.5" stroke-linecap="round"></path>
+            </svg>
+          </div>
+
+          <!-- Metric row -->
+          <div class="grid grid-cols-3 gap-3 mt-4">
+            {
+              [
+                { l: "Clicks", v: "18.4K" },
+                { l: "Conversions", v: "70/mo" },
+                { l: "Avg. CTR", v: "6.8%" },
+              ].map((m) => (
+                <div class="rounded-lg bg-[#f8f7f3] border border-[#ebe9e0] py-2.5 text-center">
+                  <div class="text-[10px] uppercase tracking-wide text-[#9a9890] font-semibold">{m.l}</div>
+                  <div class="text-[#161514] font-bold">{m.v}</div>
+                </div>
+              ))
+            }
+          </div>
+          <!-- spacer so the overlapping audit card has room -->
+          <div class="h-28 sm:h-24"></div>
+        </div>
+      </div>
+
+      <!-- Audit report card (offset + rotated, cropped at bottom) -->
+      <div
+        class="absolute -bottom-6 right-3 sm:right-8 w-[78%] sm:w-[58%] max-h-[230px] overflow-hidden rounded-2xl bg-[#ffffff] border border-[#e7eed5] shadow-[0_22px_50px_rgba(63,80,40,0.22)] rotate-[-3deg]"
+        aria-label="DGTL House audit report preview"
+      >
+        <div class="bg-[#3f5028] px-5 py-3 flex items-center gap-2">
+          <span class="w-6 h-6 rounded-md bg-[#b5e550] text-[#3f5028] flex items-center justify-center font-black text-xs">D</span>
+          <span class="text-[#f8f7f3] font-bold text-sm">DGTL House · Account Audit</span>
+        </div>
+        <div class="p-5">
+          <div class="text-[11px] uppercase tracking-wide text-[#9a9890] font-semibold mb-3">Key findings</div>
+          <ul class="space-y-2.5">
+            {
+              auditFindings.map((f) => (
+                <li class="flex items-center justify-between gap-3">
+                  <span class="flex items-center gap-2 text-[#52504c] text-sm">
+                    <span class={`w-2 h-2 rounded-full ${f.tone === "bad" ? "bg-[#b33d27]" : "bg-[#d18a3f]"}`} />
+                    {f.label}
+                  </span>
+                  <span class={`text-sm font-semibold ${f.tone === "bad" ? "text-[#b33d27]" : "text-[#b87029]"}`}>
+                    {f.value}
+                  </span>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Caption -->
+    <p class="text-center text-[#161514] text-base sm:text-xl font-medium max-w-2xl mx-auto mt-12 sm:mt-14 reveal">
+      Finally <span class="font-bold">make your grant work</span> — bringing in
+      <span class="font-bold">real donors and volunteers</span>, month after month.
+    </p>
+  </div>
+</section>

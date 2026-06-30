@@ -1,0 +1,76 @@
+---
+// Block 3 — Pain Section. Icon + bold title + 1-2 sentences, brand muted-red.
+const pains = [
+  {
+    title: "Budget going to waste",
+    desc: "Grant approved — but the spend barely moves. Month after month, most of the $10K goes unused.",
+    icon: `<path d="M12 1v22"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>`,
+  },
+  {
+    title: "Barely any traffic",
+    desc: "The account is set up, but clicks come in one by one. You have no idea where the bottleneck is.",
+    icon: `<path d="M3 3v18h18"/><path d="m7 14 3-3 3 2 5-6"/>`,
+  },
+  {
+    title: "Zero donations from ads",
+    desc: "People land on your site but don't donate and don't fill out forms.",
+    icon: `<path d="M3 3v18h18"/><path d="m19 9-5 5-3-3-4 4"/>`,
+  },
+  {
+    title: "Don't know what to fix",
+    desc: "There are dozens of settings in the account. Which ones actually matter — unclear.",
+    icon: `<path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96.44 2.5 2.5 0 0 1-2.96-3.08 3 3 0 0 1-.34-5.58 2.5 2.5 0 0 1 1.32-4.24 2.5 2.5 0 0 1 4.94-.54Z"/><circle cx="15.5" cy="9.5" r="0.5" fill="currentColor"/>`,
+  },
+  {
+    title: "Tried it yourself — nothing worked",
+    desc: "You went through Google's help docs, watched tutorials, but got no real results.",
+    icon: `<path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76Z"/>`,
+  },
+  {
+    title: "Worked with an agency — nothing changed",
+    desc: "You paid, got a report-for-report's-sake, and the numbers stayed the same.",
+    icon: `<rect width="20" height="14" x="2" y="7" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>`,
+  },
+];
+---
+
+<!-- Block 3 — Pain Section -->
+<section id="pain" class="relative py-16 sm:py-24 overflow-hidden bg-[#f8f7f3]">
+  <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-[#b33d27]/5 rounded-full blur-[150px] pointer-events-none"></div>
+
+  <div class="max-w-6xl mx-auto px-4 sm:px-6">
+    <div class="text-center max-w-3xl mx-auto mb-12 sm:mb-16 reveal">
+      <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black text-[#161514] leading-tight mb-4">
+        You have the grant. But the results
+        <span class="text-[#b33d27]">aren't coming.</span>
+      </h2>
+      <p class="text-[#52504c] text-base sm:text-xl">Do any of these sound familiar?</p>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 reveal-stagger">
+      {
+        pains.map((pain) => (
+          <div class="glass-card lift rounded-2xl p-6 group">
+            <div class="pain-icon mb-4 group-hover:scale-110 transition-transform">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#b33d27" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" set:html={pain.icon} />
+            </div>
+            <h3 class="text-[#b33d27] font-bold text-base sm:text-lg mb-2">{pain.title}</h3>
+            <p class="text-[#52504c] text-sm sm:text-base leading-relaxed">{pain.desc}</p>
+          </div>
+        ))
+      }
+    </div>
+
+    <!-- Callout card -->
+    <div class="mt-8 reveal">
+      <div class="rounded-2xl p-6 sm:p-8 bg-gradient-to-r from-[#b33d27]/10 via-[#b33d27]/[0.04] to-[#b33d27]/10 border border-[#b33d27]/15">
+        <p class="text-[#161514] text-center text-sm sm:text-lg leading-relaxed max-w-3xl mx-auto">
+          If you recognise yourself here — <span class="font-bold">you're not alone.</span>
+          Based on our data, <span class="text-[#b33d27] font-bold">8 out of 10 Google Ad Grants run at 10–20% of their potential.</span>
+          And in almost every case, the problem isn't the grant itself — it's how
+          the account is set up.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>

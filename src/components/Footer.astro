@@ -1,0 +1,61 @@
+---
+const year = new Date().getFullYear();
+---
+
+<footer class="bg-[#ebe9e0] border-t border-[#dbdbd8] py-14">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6">
+    <div class="flex flex-col lg:flex-row lg:justify-between lg:items-center gap-8 mb-12">
+      <!-- Brand -->
+      <div class="flex-1">
+        <img
+          src="/nonprofit-logo.svg"
+          alt="DGTL House — Google Ad Grants for Nonprofits"
+          width="140"
+          height="28"
+          loading="lazy"
+          decoding="async"
+          class="h-7 w-auto mb-5"
+        />
+        <p class="text-[#7a7770] text-sm sm:text-base leading-relaxed max-w-sm">
+          Free Google Ad Grants audits for nonprofits. A real specialist reviews
+          your account and gives you a clear, step-by-step action plan — yours to
+          keep.
+        </p>
+      </div>
+
+      <!-- Contacts -->
+      <div class="flex flex-col gap-3 lg:text-right">
+        <div class="text-sm sm:text-base text-[#7a7770]">
+          <a href="mailto:nonprofit@dgtl-house.com" class="hover:text-[#3f5028] transition-colors">
+            nonprofit@dgtl-house.com
+          </a>
+        </div>
+        <div class="text-sm sm:text-base text-[#7a7770]">1 (224) 584 8401</div>
+        <div class="text-sm sm:text-base text-[#7a7770]">
+          1635 Eagle Grove Ct. Wheeling, IL 60090
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom bar -->
+    <div class="pt-8 border-t border-[#dbdbd8] flex flex-wrap items-center justify-between gap-4">
+      <p class="text-[#9a9890] text-sm sm:text-base">
+        © {year} DGTL House. All rights reserved.
+      </p>
+      <div class="flex flex-wrap items-center gap-3 text-sm sm:text-base text-[#9a9890]">
+        <span>Google for Nonprofits Partner</span>
+        <span class="text-[#cfcfcf]">·</span>
+        <span>Not affiliated with Google LLC</span>
+        <span class="text-[#cfcfcf]">·</span>
+        <a
+          href="https://dgtl-house.com/privacy-policy"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="hover:text-[#3f5028] transition-colors"
+        >
+          Privacy Policy
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
