@@ -236,28 +236,35 @@ const niches = [
         }
       </div>
 
-      <!-- Arrows -->
+    </div>
+
+    <!-- Controls: arrows flank the dots on every breakpoint; each arrow fades
+         out at its end. Dots are built in JS so their count matches the number
+         of reachable scroll pages (2-up desktop yields fewer pages than cards). -->
+    <div class="flex items-center justify-center gap-3 sm:gap-4 mt-6">
       <button
         id="cases-prev"
         aria-label="Previous case study"
-        class="hidden sm:flex absolute -left-4 lg:-left-6 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-[#ffffff] border border-[#ebe9e0] shadow-md items-center justify-center text-[#3f5028] hover:bg-[#f0eee6] transition-colors z-10"
+        class="carousel-arrow w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-[#ffffff] border border-[#ebe9e0] shadow-md flex items-center justify-center text-[#3f5028] hover:bg-[#f0eee6] shrink-0"
       >
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"></polyline></svg>
       </button>
+
+      <div
+        id="cases-dots"
+        class="flex items-center justify-center gap-2 min-h-[39px]"
+        role="tablist"
+        aria-label="Case study pages"
+      >
+      </div>
+
       <button
         id="cases-next"
         aria-label="Next case study"
-        class="hidden sm:flex absolute -right-4 lg:-right-6 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-[#ffffff] border border-[#ebe9e0] shadow-md items-center justify-center text-[#3f5028] hover:bg-[#f0eee6] transition-colors z-10"
+        class="carousel-arrow w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-[#ffffff] border border-[#ebe9e0] shadow-md flex items-center justify-center text-[#3f5028] hover:bg-[#f0eee6] shrink-0"
       >
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"></polyline></svg>
       </button>
-    </div>
-
-    <!-- Dots -->
-    <div id="cases-dots" class="flex items-center justify-center gap-2 mt-6">
-      {cases.map((_, i) => (
-        <button class="carousel-dot" data-dot={i} aria-label={`Go to case ${i + 1}`} aria-current={i === 0 ? "true" : "false"}></button>
-      ))}
     </div>
 
     <!-- Niche pill-tags -->
@@ -286,28 +293,42 @@ const niches = [
 
 <!-- Lightbox -->
 <div id="case-lightbox" class="lightbox" role="dialog" aria-modal="true" aria-label="Enlarged spend chart">
-  <div class="relative w-full max-w-3xl bg-[#ffffff] rounded-2xl p-5 sm:p-7">
-    <button id="lightbox-close" aria-label="Close" class="absolute top-3 right-3 w-9 h-9 rounded-full bg-[#f0eee6] text-[#161514] flex items-center justify-center hover:bg-[#ebe9e0]">
+  <div class="relative w-full h-full sm:h-auto sm:max-w-3xl bg-[#ffffff] sm:rounded-2xl p-4 sm:p-7 flex flex-col">
+    <button id="lightbox-close" aria-label="Close" class="absolute top-3 right-3 z-10 w-10 h-10 rounded-full bg-[#f0eee6] text-[#161514] flex items-center justify-center hover:bg-[#ebe9e0] shadow-sm">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
     </button>
-    <div id="lightbox-title" class="text-[#161514] font-bold text-lg mb-1"></div>
+    <div id="lightbox-title" class="text-[#161514] font-bold text-lg mb-1 pr-12"></div>
     <div class="text-[11px] font-semibold uppercase tracking-wide text-[#7a7770] mb-3">
       Google Ads · monthly spend
     </div>
-    <svg id="lightbox-svg" viewBox="0 0 720 240" class="w-full h-56 sm:h-72" preserveAspectRatio="none" aria-hidden="true">
-      <defs>
-        <linearGradient id="area-lb" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stop-color="#aac976" stop-opacity="0.35"></stop>
-          <stop offset="100%" stop-color="#aac976" stop-opacity="0.03"></stop>
-        </linearGradient>
-      </defs>
-      <path id="lightbox-area" d="" fill="url(#area-lb)"></path>
-      <path id="lightbox-line" d="" fill="none" stroke="#3f7d4f" stroke-width="3.5" stroke-linecap="round"></path>
-    </svg>
-    <div class="flex items-center justify-between mt-2">
+
+    <!-- Zoomable stage: fills the screen on mobile, fixed height on desktop -->
+    <div class="flex-1 min-h-0 flex items-center justify-center sm:block">
+      <div
+        id="lightbox-stage"
+        class="lightbox-stage w-full max-h-full rounded-xl bg-[#f6f8ee] border border-[#e7eed5] aspect-[16/10] sm:aspect-auto sm:h-72"
+      >
+        <svg id="lightbox-svg" viewBox="0 0 720 240" class="lightbox-svg w-full h-full" preserveAspectRatio="none" aria-hidden="true">
+          <defs>
+            <linearGradient id="area-lb" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#aac976" stop-opacity="0.35"></stop>
+              <stop offset="100%" stop-color="#aac976" stop-opacity="0.03"></stop>
+            </linearGradient>
+          </defs>
+          <path id="lightbox-area" d="" fill="url(#area-lb)"></path>
+          <path id="lightbox-line" d="" fill="none" stroke="#3f7d4f" stroke-width="3.5" stroke-linecap="round"></path>
+        </svg>
+      </div>
+    </div>
+
+    <div class="flex items-center justify-between mt-3 shrink-0">
       <span id="lightbox-from" class="text-[#b33d27] text-base font-bold"></span>
       <span id="lightbox-to" class="text-[#3f5028] text-xl font-extrabold"></span>
     </div>
+    <p class="text-center text-[11px] text-[#9a9890] mt-2 shrink-0">
+      <span class="sm:hidden">Pinch to zoom · drag to pan · double-tap to reset</span>
+      <span class="hidden sm:inline">Scroll to zoom · drag to pan · double-click to reset</span>
+    </p>
   </div>
 </div>
 
@@ -315,48 +336,92 @@ const niches = [
   (function () {
     const track = document.getElementById("cases-track");
     if (!track) return;
-    const slides = Array.prototype.slice.call(
-      track.querySelectorAll(".carousel-slide"),
-    );
-    const dots = Array.prototype.slice.call(
-      document.querySelectorAll("[data-dot]"),
-    );
+    const dotsWrap = document.getElementById("cases-dots");
     const prev = document.getElementById("cases-prev");
     const next = document.getElementById("cases-next");
 
-    function current() {
-      let idx = 0;
-      let min = Infinity;
-      slides.forEach(function (s, i) {
-        const d = Math.abs(
-          s.getBoundingClientRect().left - track.getBoundingClientRect().left,
-        );
-        if (d < min) {
-          min = d;
-          idx = i;
+    // A "page" is one viewport-width of the track. The desktop layout shows two
+    // cards at once, so there are fewer pages than cards — dots track pages, not
+    // cards, otherwise the last dot(s) could never become active.
+    let pageCount = 0;
+
+    function computePages() {
+      const cw = track.clientWidth;
+      if (cw === 0) return 1;
+      const maxScroll = track.scrollWidth - cw;
+      if (maxScroll <= 1) return 1;
+      return Math.max(1, Math.round(maxScroll / cw) + 1);
+    }
+    function currentPage() {
+      const cw = track.clientWidth || 1;
+      return Math.max(
+        0,
+        Math.min(pageCount - 1, Math.round(track.scrollLeft / cw)),
+      );
+    }
+    function go(page) {
+      const cw = track.clientWidth;
+      const p = Math.max(0, Math.min(pageCount - 1, page));
+      track.scrollTo({ left: p * cw, behavior: "smooth" });
+    }
+    function syncDots() {
+      const active = currentPage();
+      Array.prototype.forEach.call(dotsWrap.children, function (d, i) {
+        d.setAttribute("aria-current", i === active ? "true" : "false");
+      });
+      // Fade the prev arrow at the start, the next arrow at the end.
+      const single = pageCount <= 1;
+      if (prev) prev.classList.toggle("is-hidden", single || active <= 0);
+      if (next) next.classList.toggle("is-hidden", single || active >= pageCount - 1);
+    }
+    function buildDots() {
+      const pages = computePages();
+      if (pages !== pageCount || dotsWrap.children.length !== pages) {
+        pageCount = pages;
+        dotsWrap.innerHTML = "";
+        if (pageCount > 1) {
+          for (let i = 0; i < pageCount; i++) {
+            const b = document.createElement("button");
+            b.className = "carousel-dot";
+            b.setAttribute("role", "tab");
+            b.setAttribute("aria-label", "Go to slide " + (i + 1));
+            b.addEventListener(
+              "click",
+              (function (idx) {
+                return function () {
+                  go(idx);
+                };
+              })(i),
+            );
+            dotsWrap.appendChild(b);
+          }
         }
+      }
+      syncDots();
+    }
+
+    track.addEventListener(
+      "scroll",
+      function () {
+        window.requestAnimationFrame(syncDots);
+      },
+      { passive: true },
+    );
+    prev &&
+      prev.addEventListener("click", function () {
+        go(currentPage() - 1);
       });
-      return idx;
-    }
-    function sync() {
-      const idx = current();
-      dots.forEach(function (d, i) {
-        d.setAttribute("aria-current", i === idx ? "true" : "false");
+    next &&
+      next.addEventListener("click", function () {
+        go(currentPage() + 1);
       });
-    }
-    function go(idx) {
-      const i = Math.max(0, Math.min(slides.length - 1, idx));
-      track.scrollTo({ left: slides[i].offsetLeft - track.offsetLeft, behavior: "smooth" });
-    }
-    track.addEventListener("scroll", function () {
-      window.requestAnimationFrame(sync);
-    }, { passive: true });
-    prev && prev.addEventListener("click", function () { go(current() - 1); });
-    next && next.addEventListener("click", function () { go(current() + 1); });
-    dots.forEach(function (d, i) {
-      d.addEventListener("click", function () { go(i); });
+
+    let resizeTimer;
+    window.addEventListener("resize", function () {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(buildDots, 150);
     });
-    sync();
+    buildDots();
 
     // Lightbox
     const lb = document.getElementById("case-lightbox");
@@ -365,6 +430,132 @@ const niches = [
     const lbTitle = document.getElementById("lightbox-title");
     const lbFrom = document.getElementById("lightbox-from");
     const lbTo = document.getElementById("lightbox-to");
+    // --- Pinch / wheel zoom + drag-pan for the enlarged chart ---
+    const lbStage = document.getElementById("lightbox-stage");
+    const lbSvg = document.getElementById("lightbox-svg");
+    const MIN = 1, MAX = 5;
+    let scale = 1, tx = 0, ty = 0;
+    const pointers = new Map();
+    let pinch = null; // two-finger gesture snapshot
+    let panLast = null; // one-finger / mouse pan anchor
+    let lastTap = 0;
+    let downInfo = null; // single-pointer tap candidate (null during a pinch/drag)
+
+    function rect() {
+      return lbStage.getBoundingClientRect();
+    }
+    function clampPan() {
+      const r = rect();
+      tx = Math.min(0, Math.max(r.width * (1 - scale), tx));
+      ty = Math.min(0, Math.max(r.height * (1 - scale), ty));
+    }
+    function apply() {
+      lbSvg.style.transform =
+        "translate(" + tx + "px," + ty + "px) scale(" + scale + ")";
+    }
+    // Zoom toward a focal client-point, keeping that point visually fixed.
+    function zoomTo(next, clientX, clientY, animate) {
+      const r = rect();
+      const ox = clientX == null ? r.width / 2 : clientX - r.left;
+      const oy = clientY == null ? r.height / 2 : clientY - r.top;
+      const cx = (ox - tx) / scale, cy = (oy - ty) / scale;
+      scale = Math.min(MAX, Math.max(MIN, next));
+      tx = ox - cx * scale;
+      ty = oy - cy * scale;
+      clampPan();
+      lbSvg.classList.toggle("animate", !!animate);
+      apply();
+    }
+    function reset(animate) {
+      scale = 1; tx = 0; ty = 0;
+      lbSvg.classList.toggle("animate", !!animate);
+      apply();
+    }
+
+    lbStage.addEventListener("pointerdown", function (e) {
+      lbStage.setPointerCapture(e.pointerId);
+      pointers.set(e.pointerId, { x: e.clientX, y: e.clientY });
+      lbSvg.classList.remove("animate");
+      if (pointers.size === 2) {
+        const p = Array.from(pointers.values());
+        pinch = {
+          dist: Math.hypot(p[0].x - p[1].x, p[0].y - p[1].y),
+          scale: scale, tx: tx, ty: ty,
+          midX: (p[0].x + p[1].x) / 2, midY: (p[0].y + p[1].y) / 2,
+        };
+        downInfo = null; // a pinch is never a tap
+      } else {
+        panLast = { x: e.clientX, y: e.clientY };
+        downInfo = { x: e.clientX, y: e.clientY };
+      }
+    });
+
+    lbStage.addEventListener("pointermove", function (e) {
+      if (!pointers.has(e.pointerId)) return;
+      pointers.set(e.pointerId, { x: e.clientX, y: e.clientY });
+      if (downInfo && Math.hypot(e.clientX - downInfo.x, e.clientY - downInfo.y) > 12) {
+        downInfo = null; // moved too far to be a tap
+      }
+      if (pointers.size === 2 && pinch) {
+        const p = Array.from(pointers.values());
+        const r = rect();
+        const dist = Math.hypot(p[0].x - p[1].x, p[0].y - p[1].y);
+        const cx = (pinch.midX - r.left - pinch.tx) / pinch.scale;
+        const cy = (pinch.midY - r.top - pinch.ty) / pinch.scale;
+        const midX = (p[0].x + p[1].x) / 2 - r.left;
+        const midY = (p[0].y + p[1].y) / 2 - r.top;
+        scale = Math.min(MAX, Math.max(MIN, pinch.scale * (dist / pinch.dist)));
+        tx = midX - cx * scale;
+        ty = midY - cy * scale;
+        clampPan();
+        apply();
+      } else if (pointers.size === 1 && panLast && scale > 1) {
+        lbStage.classList.add("is-panning");
+        tx += e.clientX - panLast.x;
+        ty += e.clientY - panLast.y;
+        panLast = { x: e.clientX, y: e.clientY };
+        clampPan();
+        apply();
+      }
+    });
+
+    function endPointer(e) {
+      pointers.delete(e.pointerId);
+      lbStage.classList.remove("is-panning");
+      if (pointers.size < 2) pinch = null;
+      const left = Array.from(pointers.values())[0];
+      panLast = left ? { x: left.x, y: left.y } : null;
+    }
+    lbStage.addEventListener("pointerup", function (e) {
+      // Only a genuine single-finger tap (not the tail of a pinch/drag) counts
+      // toward the double-tap-to-reset gesture.
+      const isTap =
+        downInfo &&
+        pointers.size === 1 &&
+        Math.hypot(e.clientX - downInfo.x, e.clientY - downInfo.y) < 12;
+      if (isTap) {
+        const now = Date.now();
+        if (now - lastTap < 300) {
+          if (scale > 1.05) reset(true);
+          else zoomTo(2.5, e.clientX, e.clientY, true);
+          lastTap = 0;
+        } else {
+          lastTap = now;
+        }
+      }
+      downInfo = null;
+      endPointer(e);
+    });
+    lbStage.addEventListener("pointercancel", endPointer);
+    lbStage.addEventListener(
+      "wheel",
+      function (e) {
+        e.preventDefault();
+        zoomTo(scale * (e.deltaY < 0 ? 1.15 : 1 / 1.15), e.clientX, e.clientY, false);
+      },
+      { passive: false },
+    );
+
     function openLb(btn) {
       const chart = btn.getAttribute("data-chart");
       lbArea.setAttribute("d", chart + " L720,240 L0,240 Z");
@@ -372,12 +563,17 @@ const niches = [
       lbTitle.textContent = btn.getAttribute("data-org");
       lbFrom.textContent = btn.getAttribute("data-from");
       lbTo.textContent = btn.getAttribute("data-to");
+      reset(false);
       lb.classList.add("is-open");
       document.body.style.overflow = "hidden";
     }
     function closeLb() {
       lb.classList.remove("is-open");
       document.body.style.overflow = "";
+      pointers.clear();
+      pinch = null;
+      panLast = null;
+      reset(false);
     }
     document.querySelectorAll(".case-chart").forEach(function (btn) {
       btn.addEventListener("click", function () { openLb(btn); });

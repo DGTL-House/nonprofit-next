@@ -95,6 +95,7 @@ const guarantees = [
     ).getDate();
     // 10 spots at the start of the month → ~1 near the end.
     var left = Math.max(1, Math.round(10 - (day / daysInMonth) * 9));
-    el.textContent = month + " — " + left + " spots remaining out of 10";
+    var noun = left === 1 ? "spot" : "spots";
+    el.textContent = month + " — " + left + " " + noun + " remaining out of 10";
   })();
 </script>

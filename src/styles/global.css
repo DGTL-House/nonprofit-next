@@ -1,5 +1,15 @@
 @import "tailwindcss";
 
+/* Self-hosted Lexend (variable, latin) — removes a render-blocking third-party
+   request and the Google Fonts connection. Display:swap avoids invisible text. */
+@font-face {
+    font-family: "Lexend";
+    font-style: normal;
+    font-weight: 100 900;
+    font-display: swap;
+    src: url("/fonts/lexend-var.woff2") format("woff2");
+}
+
 /* ============================================================
    Design tokens — ported verbatim from the `nonprofit` project
    (grants.dgtl-house.com). Cream/light theme + lime-olive accent.
@@ -417,8 +427,10 @@ textarea::placeholder {
    Additions for the Audit landing (kept on-brand)
    ============================================================ */
 
-/* Scroll-reveal — replaces framer-motion fadeUp from the reference */
-.reveal {
+/* Scroll-reveal — replaces framer-motion fadeUp from the reference.
+   Gated behind `.js`: with no JavaScript the content stays fully visible
+   (progressive enhancement), so a failed/blocked script never hides copy. */
+.js .reveal {
     opacity: 0;
     transform: translateY(28px);
     transition: opacity 0.7s cubic-bezier(0.25, 0.1, 0.25, 1),
@@ -426,29 +438,29 @@ textarea::placeholder {
     will-change: opacity, transform;
 }
 
-.reveal.is-visible {
+.js .reveal.is-visible {
     opacity: 1;
     transform: none;
 }
 
 /* Stagger children when a container becomes visible */
-.reveal-stagger > * {
+.js .reveal-stagger > * {
     opacity: 0;
     transform: translateY(28px);
     transition: opacity 0.6s cubic-bezier(0.25, 0.1, 0.25, 1),
         transform 0.6s cubic-bezier(0.25, 0.1, 0.25, 1);
 }
 
-.reveal-stagger.is-visible > * {
+.js .reveal-stagger.is-visible > * {
     opacity: 1;
     transform: none;
 }
 
-.reveal-stagger.is-visible > *:nth-child(2) { transition-delay: 0.08s; }
-.reveal-stagger.is-visible > *:nth-child(3) { transition-delay: 0.16s; }
-.reveal-stagger.is-visible > *:nth-child(4) { transition-delay: 0.24s; }
-.reveal-stagger.is-visible > *:nth-child(5) { transition-delay: 0.32s; }
-.reveal-stagger.is-visible > *:nth-child(6) { transition-delay: 0.40s; }
+.js .reveal-stagger.is-visible > *:nth-child(2) { transition-delay: 0.08s; }
+.js .reveal-stagger.is-visible > *:nth-child(3) { transition-delay: 0.16s; }
+.js .reveal-stagger.is-visible > *:nth-child(4) { transition-delay: 0.24s; }
+.js .reveal-stagger.is-visible > *:nth-child(5) { transition-delay: 0.32s; }
+.js .reveal-stagger.is-visible > *:nth-child(6) { transition-delay: 0.40s; }
 
 @media (prefers-reduced-motion: reduce) {
     .reveal,
@@ -496,17 +508,48 @@ textarea::placeholder {
     }
 }
 
+/* Transparent ~40px tap target (touch-accessibility) with the visible dot drawn
+   as a centred pseudo-element, so it stays a crisp circle / pill. */
 .carousel-dot {
+    width: 31px;
+    height: 39px;
+    padding: 0;
+    background: transparent;
+    border: 0;
+    position: relative;
+}
+
+.carousel-dot::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
     width: 9px;
     height: 9px;
+    transform: translate(-50%, -50%);
     border-radius: 999px;
     background: #cfcfcf;
     transition: background 0.3s ease, width 0.3s ease;
 }
 
-.carousel-dot[aria-current="true"] {
+.carousel-dot[aria-current="true"]::before {
     background: #3f5028;
     width: 26px;
+}
+
+/* Carousel arrows — fade out (keeping their slot) at the start/end so the dots
+   stay centred and the controls don't jump. */
+.carousel-arrow {
+    transition: opacity 0.25s ease, background 0.25s ease, transform 0.2s ease;
+}
+
+.carousel-arrow:active {
+    transform: scale(0.92);
+}
+
+.carousel-arrow.is-hidden {
+    opacity: 0;
+    pointer-events: none;
 }
 
 /* --------- Before / After comparison (Block 6) --------- */
@@ -555,7 +598,8 @@ textarea::placeholder {
     background: rgba(179, 61, 39, 0.08);
 }
 
-/* Lightbox for case-study screenshots */
+/* Lightbox for case-study screenshots.
+   Full-bleed on mobile (panel fills the screen); centered card on >= sm. */
 .lightbox {
     position: fixed;
     inset: 0;
@@ -563,11 +607,37 @@ textarea::placeholder {
     display: none;
     align-items: center;
     justify-content: center;
-    padding: 1.5rem;
+    padding: 0;
     background: rgba(22, 21, 20, 0.82);
     backdrop-filter: blur(4px);
 }
 
+@media (min-width: 640px) {
+    .lightbox {
+        padding: 1.5rem;
+    }
+}
+
 .lightbox.is-open {
     display: flex;
+}
+
+/* Pinch/drag viewport. touch-action:none lets JS own the gestures. */
+.lightbox-stage {
+    overflow: hidden;
+    touch-action: none;
+    cursor: grab;
+}
+
+.lightbox-stage.is-panning {
+    cursor: grabbing;
+}
+
+.lightbox-svg {
+    transform-origin: 0 0;
+    will-change: transform;
+}
+
+.lightbox-svg.animate {
+    transition: transform 0.18s ease-out;
 }
