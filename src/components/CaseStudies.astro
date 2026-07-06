@@ -5,46 +5,46 @@ import { BOOK_HREF, CTA_PRIMARY } from "../consts";
 // journey → metrics → client quote. Numbers mirror the brief's worked example.
 const cases = [
   {
-    org: "Coastal Animal Rescue",
-    niche: "Animal Welfare",
-    note: "Regional shelter running adoption and rescue programs.",
-    period: "12 months",
-    spendFrom: "$800",
-    spendTo: "$9,200",
-    growth: "11.5×",
+    org: "Refugee support org",
+    niche: "Refugee Support",
+    note: "Name under NDA — resettlement and legal aid services.",
+    period: "",
+    spendFrom: "$200",
+    spendTo: "$7,600",
+    budget: "$0 → $7,600/mo",
     // smooth area path inside a 0..720 x 0..240 viewBox
     chart:
-      "M0,210 C120,205 180,196 240,170 C300,146 330,120 400,96 C470,72 520,52 600,36 C650,26 690,20 720,16",
+      "M0,214 C120,210 180,202 250,184 C320,166 360,132 430,106 C500,80 540,56 610,38 C660,26 695,20 720,16",
     before:
-      "$800/mo spent of $10K. No conversion tracking, no donations coming from ads.",
+      "$200/mo of $10K. Account at risk of suspension, almost no donations from ads.",
     didIt:
-      "Rebuilt campaign structure. Set up conversion tracking. Expanded keywords 40 → 300+.",
+      "Cleared policy violations, rebuilt account, set up tracking for donations and case referrals.",
     result:
-      "$9,200/mo spent. 47 donations and 23 sign-ups every single month.",
+      "$7,600/mo spent. Donations and volunteer applications every week, suspension risk gone.",
     metrics: [
-      { label: "Donations", value: "+47/mo" },
-      { label: "Sign-ups", value: "+23/mo" },
+      { label: "Donations", value: "+51/mo" },
+      { label: "Volunteer apps", value: "+29/mo" },
     ],
     quote:
-      "The audit showed us three things we'd been doing wrong for a year.",
-    author: "Sarah Mitchell, Exec Director",
+      "For the first time the grant is actually bringing people to our door.",
+    author: "Head of Development",
   },
   {
     org: "Education nonprofit",
     niche: "Education",
     note: "Name under NDA — after-school literacy programs.",
-    period: "9 months",
-    spendFrom: "$1,150",
-    spendTo: "$9,800",
-    growth: "8.5×",
+    period: "",
+    spendFrom: "$500",
+    spendTo: "~$10,000",
+    budget: "20× growth",
     chart:
       "M0,206 C110,202 170,190 240,176 C310,162 350,128 420,104 C480,84 520,60 600,40 C650,28 690,22 720,18",
     before:
-      "$1,150/mo of the grant used. Broad keywords, low CTR, one click-through risk warning from Google.",
+      "Broad keywords, low CTR, one click-through risk warning from Google.",
     didIt:
       "Tightened keyword themes, fixed CTR, restructured ad groups, added program-specific landing pages.",
     result:
-      "$9,800/mo spent. Steady stream of enrolment inquiries and volunteer sign-ups.",
+      "~$10,000/mo spent. Steady stream of enrolment inquiries and volunteer sign-ups.",
     metrics: [
       { label: "Enrolment inquiries", value: "+62/mo" },
       { label: "Volunteer sign-ups", value: "+38/mo" },
@@ -54,28 +54,51 @@ const cases = [
     author: "Program Director",
   },
   {
-    org: "Refugee support org",
-    niche: "Refugee Support",
-    note: "Name under NDA — resettlement and legal aid services.",
-    period: "12 months",
-    spendFrom: "$600",
-    spendTo: "$9,500",
-    growth: "15.8×",
+    org: "Coastal Animal Rescue",
+    niche: "Animal Welfare",
+    note: "Regional shelter running adoption and rescue programs.",
+    period: "",
+    spendFrom: "$200",
+    spendTo: "$9,700",
+    budget: "$0 → $9,700/mo",
     chart:
-      "M0,214 C120,210 180,202 250,184 C320,166 360,132 430,106 C500,80 540,56 610,38 C660,26 695,20 720,16",
+      "M0,210 C120,205 180,196 240,170 C300,146 330,120 400,96 C470,72 520,52 600,36 C650,26 690,20 720,16",
     before:
-      "$600/mo of $10K. Account at risk of suspension, almost no donations from ads.",
+      "$200/mo spent of $10K. No conversion tracking, no donations coming from ads.",
     didIt:
-      "Cleared policy violations, rebuilt account, set up tracking for donations and case referrals.",
+      "Rebuilt campaign structure. Set up conversion tracking. Expanded keywords 40 → 300+.",
     result:
-      "$9,500/mo spent. Donations and volunteer applications every week, suspension risk gone.",
+      "$9,700/mo spent. A consistent flow of donations and volunteer sign-ups every month.",
     metrics: [
-      { label: "Donations", value: "+51/mo" },
-      { label: "Volunteer apps", value: "+29/mo" },
+      { label: "Donations", value: "+47/mo" },
+      { label: "Sign-ups", value: "+23/mo" },
+    ],
+    quote: "The audit showed us three things we'd been doing wrong for a year.",
+    author: "Sarah Mitchell, Exec Director",
+  },
+  {
+    org: "Youth mentorship org",
+    niche: "Youth Programs",
+    note: "Name under NDA — started with no Google Ad Grant.",
+    period: "",
+    spendFrom: "$0",
+    spendTo: "~$10,000",
+    budget: "~100%",
+    chart:
+      "M0,224 C130,222 200,216 270,196 C340,176 380,140 450,110 C520,80 560,52 620,36 C665,24 695,18 720,15",
+    before:
+      "No Google Ad Grant. No Google Ads account. Zero grant-funded traffic.",
+    didIt:
+      "Secured the Google Ad Grant, built the account, and optimised campaigns for maximum budget utilisation.",
+    result:
+      "~$10,000/mo consistently spent with a steady flow of donations and volunteer sign-ups.",
+    metrics: [
+      { label: "Donations", value: "+54/mo" },
+      { label: "Contact requests", value: "+46/mo" },
     ],
     quote:
-      "For the first time the grant is actually bringing people to our door.",
-    author: "Head of Development",
+      "We went from no ads at all to a full grant working for us every month.",
+    author: "Executive Director",
   },
 ];
 
@@ -90,20 +113,31 @@ const niches = [
   "Arts & Culture",
   "Youth Programs",
   "International Development",
+  "Other",
 ];
 ---
 
 <!-- Block 2 — Case Studies -->
-<section id="case-studies" class="relative py-16 sm:py-24 overflow-hidden bg-[#ffffff]">
-  <div class="absolute top-0 left-0 w-[480px] h-[480px] bg-[#aac976]/10 rounded-full blur-[150px] pointer-events-none"></div>
+<section
+  id="case-studies"
+  class="relative py-16 sm:py-24 overflow-hidden bg-[#ffffff]"
+>
+  <div
+    class="absolute top-0 left-0 w-[480px] h-[480px] bg-[#aac976]/10 rounded-full blur-[150px] pointer-events-none"
+  >
+  </div>
 
   <div class="max-w-6xl mx-auto px-4 sm:px-6">
     <!-- Headlines -->
     <div class="text-center max-w-3xl mx-auto mb-12 sm:mb-16 reveal">
-      <p class="text-[#3f5028] font-bold uppercase tracking-widest text-xs sm:text-sm mb-4">
+      <p
+        class="text-[#3f5028] font-bold uppercase tracking-widest text-xs sm:text-sm mb-4"
+      >
         Case Studies
       </p>
-      <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black text-[#161514] leading-tight mb-5">
+      <h2
+        class="text-3xl sm:text-4xl lg:text-5xl font-black text-[#161514] leading-tight mb-5"
+      >
         Don't believe a grant can hit $10K?
         <span class="gradient-text-lime">Here's how we did it.</span>
       </h2>
@@ -127,9 +161,20 @@ const niches = [
                     </h3>
                     <p class="text-[#7a7770] text-sm mt-1">{c.note}</p>
                   </div>
-                  <span class="shrink-0 inline-flex items-center gap-1 text-amber-500" aria-label="5 out of 5 stars">
+                  <span
+                    class="shrink-0 inline-flex items-center gap-1 text-amber-500"
+                    aria-label="5 out of 5 stars"
+                  >
                     {[0, 1, 2, 3, 4].map(() => (
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="#aac976" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg>
+                      <svg
+                        width="14"
+                        height="14"
+                        viewBox="0 0 24 24"
+                        fill="#EA4335"
+                        aria-hidden="true"
+                      >
+                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                      </svg>
                     ))}
                   </span>
                 </div>
@@ -157,22 +202,71 @@ const niches = [
                       Google Ads · monthly spend, {c.period}
                     </span>
                     <span class="w-7 h-7 rounded-lg bg-[#161514]/70 text-white flex items-center justify-center opacity-80 group-hover:opacity-100 transition-opacity">
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
+                      <svg
+                        width="14"
+                        height="14"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        aria-hidden="true"
+                      >
+                        <>
+                          <circle cx="11" cy="11" r="7" />
+                          <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                          <line x1="11" y1="8" x2="11" y2="14" />
+                          <line x1="8" y1="11" x2="14" y2="11" />
+                        </>
+                      </svg>
                     </span>
                   </div>
-                  <svg viewBox="0 0 720 240" class="w-full h-32 sm:h-40" preserveAspectRatio="none" aria-hidden="true">
+                  <svg
+                    viewBox="0 0 720 240"
+                    class="w-full h-32 sm:h-40"
+                    preserveAspectRatio="none"
+                    aria-hidden="true"
+                  >
                     <defs>
-                      <linearGradient id={`area-${i}`} x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="0%" stop-color="#aac976" stop-opacity="0.35" />
-                        <stop offset="100%" stop-color="#aac976" stop-opacity="0.03" />
+                      <linearGradient
+                        id={`area-${i}`}
+                        x1="0"
+                        y1="0"
+                        x2="0"
+                        y2="1"
+                      >
+                        <stop
+                          offset="0%"
+                          stop-color="#aac976"
+                          stop-opacity="0.35"
+                        />
+                        <stop
+                          offset="100%"
+                          stop-color="#aac976"
+                          stop-opacity="0.03"
+                        />
                       </linearGradient>
                     </defs>
-                    <path d={`${c.chart} L720,240 L0,240 Z`} fill={`url(#area-${i})`} />
-                    <path d={c.chart} fill="none" stroke="#3f7d4f" stroke-width="3.5" stroke-linecap="round" />
+                    <path
+                      d={`${c.chart} L720,240 L0,240 Z`}
+                      fill={`url(#area-${i})`}
+                    />
+                    <path
+                      d={c.chart}
+                      fill="none"
+                      stroke="#3f7d4f"
+                      stroke-width="3.5"
+                      stroke-linecap="round"
+                    />
                   </svg>
                   <div class="flex items-center justify-between mt-1">
-                    <span class="text-[#b33d27] text-sm font-bold">{c.spendFrom}</span>
-                    <span class="text-[#3f5028] text-base sm:text-lg font-extrabold">{c.spendTo}</span>
+                    <span class="text-[#b33d27] text-sm font-bold">
+                      {c.spendFrom}
+                    </span>
+                    <span class="text-[#3f5028] text-base sm:text-lg font-extrabold">
+                      {c.spendTo}
+                    </span>
                   </div>
                 </button>
 
@@ -181,31 +275,51 @@ const niches = [
                   <div class="text-[11px] font-semibold uppercase tracking-wide text-[#7a7770]">
                     Budget utilisation
                   </div>
-                  <div class="text-2xl font-black text-[#3f5028]">{c.growth} growth</div>
+                  <div class="text-xl sm:text-2xl font-black text-[#3f5028]">
+                    {c.budget}
+                  </div>
                 </div>
 
                 {/* Horizontal journey: Before / What we did / Result */}
                 <div class="grid sm:grid-cols-3 gap-3">
                   <div class="rounded-xl p-3.5 bg-[rgba(179,61,39,0.06)] border border-[rgba(179,61,39,0.14)]">
                     <div class="flex items-center gap-2 mb-1.5">
-                      <span class="w-5 h-5 rounded-full bg-[rgba(179,61,39,0.14)] text-[#b33d27] flex items-center justify-center text-[11px] font-black">1</span>
-                      <span class="text-[#b33d27] font-bold text-sm">Before</span>
+                      <span class="w-5 h-5 rounded-full bg-[rgba(179,61,39,0.14)] text-[#b33d27] flex items-center justify-center text-[11px] font-black">
+                        1
+                      </span>
+                      <span class="text-[#b33d27] font-bold text-sm">
+                        Before
+                      </span>
                     </div>
-                    <p class="text-[#52504c] text-[13px] leading-snug">{c.before}</p>
+                    <p class="text-[#52504c] text-[13px] leading-snug">
+                      {c.before}
+                    </p>
                   </div>
                   <div class="rounded-xl p-3.5 bg-[#f0eee6] border border-[#e4e1d6]">
                     <div class="flex items-center gap-2 mb-1.5">
-                      <span class="w-5 h-5 rounded-full bg-[#e0ddcf] text-[#3f5028] flex items-center justify-center text-[11px] font-black">2</span>
-                      <span class="text-[#3f5028] font-bold text-sm">What we did</span>
+                      <span class="w-5 h-5 rounded-full bg-[#e0ddcf] text-[#3f5028] flex items-center justify-center text-[11px] font-black">
+                        2
+                      </span>
+                      <span class="text-[#3f5028] font-bold text-sm">
+                        What we did
+                      </span>
                     </div>
-                    <p class="text-[#52504c] text-[13px] leading-snug">{c.didIt}</p>
+                    <p class="text-[#52504c] text-[13px] leading-snug">
+                      {c.didIt}
+                    </p>
                   </div>
                   <div class="rounded-xl p-3.5 bg-[rgba(170,201,118,0.16)] border border-[rgba(170,201,118,0.4)]">
                     <div class="flex items-center gap-2 mb-1.5">
-                      <span class="w-5 h-5 rounded-full bg-[rgba(170,201,118,0.4)] text-[#3f5028] flex items-center justify-center text-[11px] font-black">3</span>
-                      <span class="text-[#3f5028] font-bold text-sm">Result</span>
+                      <span class="w-5 h-5 rounded-full bg-[rgba(170,201,118,0.4)] text-[#3f5028] flex items-center justify-center text-[11px] font-black">
+                        3
+                      </span>
+                      <span class="text-[#3f5028] font-bold text-sm">
+                        Result
+                      </span>
                     </div>
-                    <p class="text-[#52504c] text-[13px] leading-snug">{c.result}</p>
+                    <p class="text-[#52504c] text-[13px] leading-snug">
+                      {c.result}
+                    </p>
                   </div>
                 </div>
 
@@ -216,7 +330,9 @@ const niches = [
                       <div class="text-[11px] font-semibold uppercase tracking-wide text-[#7a7770]">
                         {m.label}
                       </div>
-                      <div class="text-xl font-black text-[#3f5028]">{m.value}</div>
+                      <div class="text-xl font-black text-[#3f5028]">
+                        {m.value}
+                      </div>
                     </div>
                   ))}
                 </div>
@@ -235,7 +351,6 @@ const niches = [
           ))
         }
       </div>
-
     </div>
 
     <!-- Controls: arrows flank the dots on every breakpoint; each arrow fades
@@ -247,7 +362,17 @@ const niches = [
         aria-label="Previous case study"
         class="carousel-arrow w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-[#ffffff] border border-[#ebe9e0] shadow-md flex items-center justify-center text-[#3f5028] hover:bg-[#f0eee6] shrink-0"
       >
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"></polyline></svg>
+        <svg
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"><polyline points="15 18 9 12 15 6"></polyline></svg
+        >
       </button>
 
       <div
@@ -263,7 +388,17 @@ const niches = [
         aria-label="Next case study"
         class="carousel-arrow w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-[#ffffff] border border-[#ebe9e0] shadow-md flex items-center justify-center text-[#3f5028] hover:bg-[#f0eee6] shrink-0"
       >
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"></polyline></svg>
+        <svg
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"><polyline points="9 18 15 12 9 6"></polyline></svg
+        >
       </button>
     </div>
 
@@ -284,7 +419,10 @@ const niches = [
     </div>
 
     <div class="flex justify-center mt-12">
-      <a href={BOOK_HREF} class="btn-primary text-base sm:text-2xl !py-3 sm:!py-4 !px-8 sm:!px-10">
+      <a
+        href={BOOK_HREF}
+        class="btn-primary text-base sm:text-2xl !py-3 sm:!py-4 !px-8 sm:!px-10"
+      >
         {CTA_PRIMARY} →
       </a>
     </div>
@@ -292,13 +430,46 @@ const niches = [
 </section>
 
 <!-- Lightbox -->
-<div id="case-lightbox" class="lightbox" role="dialog" aria-modal="true" aria-label="Enlarged spend chart">
-  <div class="relative w-full h-full sm:h-auto sm:max-w-3xl bg-[#ffffff] sm:rounded-2xl p-4 sm:p-7 flex flex-col">
-    <button id="lightbox-close" aria-label="Close" class="absolute top-3 right-3 z-10 w-10 h-10 rounded-full bg-[#f0eee6] text-[#161514] flex items-center justify-center hover:bg-[#ebe9e0] shadow-sm">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+<div
+  id="case-lightbox"
+  class="lightbox"
+  role="dialog"
+  aria-modal="true"
+  aria-label="Enlarged spend chart"
+>
+  <div
+    class="relative w-full h-full sm:h-auto sm:max-w-3xl bg-[#ffffff] sm:rounded-2xl p-4 sm:p-7 flex flex-col"
+  >
+    <button
+      id="lightbox-close"
+      aria-label="Close"
+      class="absolute top-3 right-3 z-10 w-10 h-10 rounded-full bg-[#f0eee6] text-[#161514] flex items-center justify-center hover:bg-[#ebe9e0] shadow-sm"
+    >
+      <svg
+        width="18"
+        height="18"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        aria-hidden="true"
+        ><line x1="18" y1="6" x2="6" y2="18"></line><line
+          x1="6"
+          y1="6"
+          x2="18"
+          y2="18"></line></svg
+      >
     </button>
-    <div id="lightbox-title" class="text-[#161514] font-bold text-lg mb-1 pr-12"></div>
-    <div class="text-[11px] font-semibold uppercase tracking-wide text-[#7a7770] mb-3">
+    <div
+      id="lightbox-title"
+      class="text-[#161514] font-bold text-lg mb-1 pr-12"
+    >
+    </div>
+    <div
+      class="text-[11px] font-semibold uppercase tracking-wide text-[#7a7770] mb-3"
+    >
       Google Ads · monthly spend
     </div>
 
@@ -308,26 +479,45 @@ const niches = [
         id="lightbox-stage"
         class="lightbox-stage w-full max-h-full rounded-xl bg-[#f6f8ee] border border-[#e7eed5] aspect-[16/10] sm:aspect-auto sm:h-72"
       >
-        <svg id="lightbox-svg" viewBox="0 0 720 240" class="lightbox-svg w-full h-full" preserveAspectRatio="none" aria-hidden="true">
+        <svg
+          id="lightbox-svg"
+          viewBox="0 0 720 240"
+          class="lightbox-svg w-full h-full"
+          preserveAspectRatio="none"
+          aria-hidden="true"
+        >
           <defs>
             <linearGradient id="area-lb" x1="0" y1="0" x2="0" y2="1">
               <stop offset="0%" stop-color="#aac976" stop-opacity="0.35"></stop>
-              <stop offset="100%" stop-color="#aac976" stop-opacity="0.03"></stop>
+              <stop offset="100%" stop-color="#aac976" stop-opacity="0.03"
+              ></stop>
             </linearGradient>
           </defs>
           <path id="lightbox-area" d="" fill="url(#area-lb)"></path>
-          <path id="lightbox-line" d="" fill="none" stroke="#3f7d4f" stroke-width="3.5" stroke-linecap="round"></path>
+          <path
+            id="lightbox-line"
+            d=""
+            fill="none"
+            stroke="#3f7d4f"
+            stroke-width="3.5"
+            stroke-linecap="round"></path>
         </svg>
       </div>
     </div>
 
     <div class="flex items-center justify-between mt-3 shrink-0">
-      <span id="lightbox-from" class="text-[#b33d27] text-base font-bold"></span>
-      <span id="lightbox-to" class="text-[#3f5028] text-xl font-extrabold"></span>
+      <span id="lightbox-from" class="text-[#b33d27] text-base font-bold"
+      ></span>
+      <span id="lightbox-to" class="text-[#3f5028] text-xl font-extrabold"
+      ></span>
     </div>
     <p class="text-center text-[11px] text-[#9a9890] mt-2 shrink-0">
-      <span class="sm:hidden">Pinch to zoom · drag to pan · double-tap to reset</span>
-      <span class="hidden sm:inline">Scroll to zoom · drag to pan · double-click to reset</span>
+      <span class="sm:hidden"
+        >Pinch to zoom · drag to pan · double-tap to reset</span
+      >
+      <span class="hidden sm:inline"
+        >Scroll to zoom · drag to pan · double-click to reset</span
+      >
     </p>
   </div>
 </div>
@@ -372,7 +562,8 @@ const niches = [
       // Fade the prev arrow at the start, the next arrow at the end.
       const single = pageCount <= 1;
       if (prev) prev.classList.toggle("is-hidden", single || active <= 0);
-      if (next) next.classList.toggle("is-hidden", single || active >= pageCount - 1);
+      if (next)
+        next.classList.toggle("is-hidden", single || active >= pageCount - 1);
     }
     function buildDots() {
       const pages = computePages();
@@ -433,8 +624,11 @@ const niches = [
     // --- Pinch / wheel zoom + drag-pan for the enlarged chart ---
     const lbStage = document.getElementById("lightbox-stage");
     const lbSvg = document.getElementById("lightbox-svg");
-    const MIN = 1, MAX = 5;
-    let scale = 1, tx = 0, ty = 0;
+    const MIN = 1,
+      MAX = 5;
+    let scale = 1,
+      tx = 0,
+      ty = 0;
     const pointers = new Map();
     let pinch = null; // two-finger gesture snapshot
     let panLast = null; // one-finger / mouse pan anchor
@@ -458,7 +652,8 @@ const niches = [
       const r = rect();
       const ox = clientX == null ? r.width / 2 : clientX - r.left;
       const oy = clientY == null ? r.height / 2 : clientY - r.top;
-      const cx = (ox - tx) / scale, cy = (oy - ty) / scale;
+      const cx = (ox - tx) / scale,
+        cy = (oy - ty) / scale;
       scale = Math.min(MAX, Math.max(MIN, next));
       tx = ox - cx * scale;
       ty = oy - cy * scale;
@@ -467,7 +662,9 @@ const niches = [
       apply();
     }
     function reset(animate) {
-      scale = 1; tx = 0; ty = 0;
+      scale = 1;
+      tx = 0;
+      ty = 0;
       lbSvg.classList.toggle("animate", !!animate);
       apply();
     }
@@ -480,8 +677,11 @@ const niches = [
         const p = Array.from(pointers.values());
         pinch = {
           dist: Math.hypot(p[0].x - p[1].x, p[0].y - p[1].y),
-          scale: scale, tx: tx, ty: ty,
-          midX: (p[0].x + p[1].x) / 2, midY: (p[0].y + p[1].y) / 2,
+          scale: scale,
+          tx: tx,
+          ty: ty,
+          midX: (p[0].x + p[1].x) / 2,
+          midY: (p[0].y + p[1].y) / 2,
         };
         downInfo = null; // a pinch is never a tap
       } else {
@@ -493,7 +693,10 @@ const niches = [
     lbStage.addEventListener("pointermove", function (e) {
       if (!pointers.has(e.pointerId)) return;
       pointers.set(e.pointerId, { x: e.clientX, y: e.clientY });
-      if (downInfo && Math.hypot(e.clientX - downInfo.x, e.clientY - downInfo.y) > 12) {
+      if (
+        downInfo &&
+        Math.hypot(e.clientX - downInfo.x, e.clientY - downInfo.y) > 12
+      ) {
         downInfo = null; // moved too far to be a tap
       }
       if (pointers.size === 2 && pinch) {
@@ -551,7 +754,12 @@ const niches = [
       "wheel",
       function (e) {
         e.preventDefault();
-        zoomTo(scale * (e.deltaY < 0 ? 1.15 : 1 / 1.15), e.clientX, e.clientY, false);
+        zoomTo(
+          scale * (e.deltaY < 0 ? 1.15 : 1 / 1.15),
+          e.clientX,
+          e.clientY,
+          false,
+        );
       },
       { passive: false },
     );
@@ -576,10 +784,16 @@ const niches = [
       reset(false);
     }
     document.querySelectorAll(".case-chart").forEach(function (btn) {
-      btn.addEventListener("click", function () { openLb(btn); });
+      btn.addEventListener("click", function () {
+        openLb(btn);
+      });
     });
-    document.getElementById("lightbox-close").addEventListener("click", closeLb);
-    lb.addEventListener("click", function (e) { if (e.target === lb) closeLb(); });
+    document
+      .getElementById("lightbox-close")
+      .addEventListener("click", closeLb);
+    lb.addEventListener("click", function (e) {
+      if (e.target === lb) closeLb();
+    });
     document.addEventListener("keydown", function (e) {
       if (e.key === "Escape") closeLb();
     });
