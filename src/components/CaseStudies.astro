@@ -12,6 +12,7 @@ const cases = [
     spendFrom: "$200",
     spendTo: "$7,600",
     budget: "$0 → $7,600/mo",
+    img: "/img/account1.png",
     // smooth area path inside a 0..720 x 0..240 viewBox
     chart:
       "M0,214 C120,210 180,202 250,184 C320,166 360,132 430,106 C500,80 540,56 610,38 C660,26 695,20 720,16",
@@ -37,6 +38,7 @@ const cases = [
     spendFrom: "$500",
     spendTo: "~$10,000",
     budget: "20× growth",
+    img: "/img/account2.png",
     chart:
       "M0,206 C110,202 170,190 240,176 C310,162 350,128 420,104 C480,84 520,60 600,40 C650,28 690,22 720,18",
     before:
@@ -61,6 +63,7 @@ const cases = [
     spendFrom: "$200",
     spendTo: "$9,700",
     budget: "$0 → $9,700/mo",
+    img: "/img/account3.png",
     chart:
       "M0,210 C120,205 180,196 240,170 C300,146 330,120 400,96 C470,72 520,52 600,36 C650,26 690,20 720,16",
     before:
@@ -84,6 +87,7 @@ const cases = [
     spendFrom: "$0",
     spendTo: "~$10,000",
     budget: "~100%",
+    img: "/img/account4.png",
     chart:
       "M0,224 C130,222 200,216 270,196 C340,176 380,140 450,110 C520,80 560,52 620,36 C665,24 695,18 720,15",
     before:
@@ -150,7 +154,7 @@ const niches = [
     <div class="relative reveal">
       <div id="cases-track" class="carousel-track">
         {
-          cases.map((c, i) => (
+          cases.map((c) => (
             <article class="carousel-slide">
               <div class="glass-card rounded-3xl p-5 sm:p-7 h-full flex flex-col gap-5 shadow-[0_12px_40px_rgba(63,80,40,0.06)]">
                 {/* Org header */}
@@ -188,79 +192,66 @@ const niches = [
                   </span>
                 </div>
 
-                {/* Growth chart (click to enlarge) */}
+                {/* Real Google Ads screenshot — click to enlarge & zoom */}
                 <button
-                  class="case-chart group relative block w-full rounded-2xl bg-[#f6f8ee] border border-[#e7eed5] p-4 text-left"
+                  class="case-chart group relative block w-full rounded-2xl bg-[#f6f8ee] border border-[#e7eed5] p-3 text-left"
                   data-org={c.org}
                   data-from={c.spendFrom}
                   data-to={c.spendTo}
-                  data-chart={c.chart}
-                  aria-label={`Enlarge ${c.org} Google Ads spend chart`}
+                  data-img={c.img}
+                  aria-label={`Enlarge and zoom the ${c.org} Google Ads screenshot`}
                 >
                   <div class="flex items-center justify-between mb-2">
                     <span class="text-[11px] font-semibold uppercase tracking-wide text-[#7a7770]">
-                      Google Ads · monthly spend, {c.period}
+                      Google Ads · real account, {c.period}
                     </span>
-                    <span class="w-7 h-7 rounded-lg bg-[#161514]/70 text-white flex items-center justify-center opacity-80 group-hover:opacity-100 transition-opacity">
-                      <svg
-                        width="14"
-                        height="14"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        aria-hidden="true"
-                      >
-                        <>
-                          <circle cx="11" cy="11" r="7" />
-                          <line x1="21" y1="21" x2="16.65" y2="16.65" />
-                          <line x1="11" y1="8" x2="11" y2="14" />
-                          <line x1="8" y1="11" x2="14" y2="11" />
-                        </>
-                      </svg>
+                    <span class="text-[11px] font-semibold text-[#3f5028]">
+                      Verified screenshot
                     </span>
                   </div>
-                  <svg
-                    viewBox="0 0 720 240"
-                    class="w-full h-32 sm:h-40"
-                    preserveAspectRatio="none"
-                    aria-hidden="true"
-                  >
-                    <defs>
-                      <linearGradient
-                        id={`area-${i}`}
-                        x1="0"
-                        y1="0"
-                        x2="0"
-                        y2="1"
+
+                  {/* Screenshot with a loud zoom affordance overlaid */}
+                  <div class="zoom-frame relative rounded-xl overflow-hidden border border-[#e2e6d3] bg-[#ffffff]">
+                    <img
+                      src={c.img}
+                      alt={`${c.org} — Google Ads monthly spend growing to ${c.spendTo}`}
+                      loading="lazy"
+                      decoding="async"
+                      class="w-full h-auto block select-none transition-transform duration-500 group-hover:scale-[1.03]"
+                    />
+
+                    {/* Hover/desktop dim + big magnifier */}
+                    <div
+                      class="absolute inset-0 hidden sm:flex items-center justify-center bg-[#0b1f12]/0 group-hover:bg-[#0b1f12]/35 transition-colors duration-300"
+                    >
+                      <span
+                        class="flex items-center gap-2 px-4 py-2.5 rounded-full bg-[#ffffff] text-[#161514] font-bold text-sm shadow-lg opacity-0 scale-90 group-hover:opacity-100 group-hover:scale-100 transition-all duration-300"
                       >
-                        <stop
-                          offset="0%"
-                          stop-color="#aac976"
-                          stop-opacity="0.35"
-                        />
-                        <stop
-                          offset="100%"
-                          stop-color="#aac976"
-                          stop-opacity="0.03"
-                        />
-                      </linearGradient>
-                    </defs>
-                    <path
-                      d={`${c.chart} L720,240 L0,240 Z`}
-                      fill={`url(#area-${i})`}
-                    />
-                    <path
-                      d={c.chart}
-                      fill="none"
-                      stroke="#3f7d4f"
-                      stroke-width="3.5"
-                      stroke-linecap="round"
-                    />
-                  </svg>
-                  <div class="flex items-center justify-between mt-1">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#3f5028" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                          <circle cx="11" cy="11" r="7"></circle>
+                          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                          <line x1="11" y1="8" x2="11" y2="14"></line>
+                          <line x1="8" y1="11" x2="14" y2="11"></line>
+                        </svg>
+                        Click to zoom in
+                      </span>
+                    </div>
+
+                    {/* Always-visible magnifier pill (works on mobile too) */}
+                    <span
+                      class="zoom-pill absolute bottom-2.5 right-2.5 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#161514]/90 text-[#ffffff] text-xs font-bold shadow-md backdrop-blur-sm"
+                    >
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <circle cx="11" cy="11" r="7"></circle>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        <line x1="11" y1="8" x2="11" y2="14"></line>
+                        <line x1="8" y1="11" x2="14" y2="11"></line>
+                      </svg>
+                      Tap to zoom
+                    </span>
+                  </div>
+
+                  <div class="flex items-center justify-between mt-2 px-1">
                     <span class="text-[#b33d27] text-sm font-bold">
                       {c.spendFrom}
                     </span>
@@ -470,38 +461,22 @@ const niches = [
     <div
       class="text-[11px] font-semibold uppercase tracking-wide text-[#7a7770] mb-3"
     >
-      Google Ads · monthly spend
+      Google Ads · real account screenshot
     </div>
 
     <!-- Zoomable stage: fills the screen on mobile, fixed height on desktop -->
-    <div class="flex-1 min-h-0 flex items-center justify-center sm:block">
+    <div class="flex-1 min-h-0 flex items-center justify-center">
       <div
         id="lightbox-stage"
-        class="lightbox-stage w-full max-h-full rounded-xl bg-[#f6f8ee] border border-[#e7eed5] aspect-[16/10] sm:aspect-auto sm:h-72"
+        class="lightbox-stage w-full max-h-full overflow-hidden rounded-xl bg-[#ffffff] border border-[#e7eed5] flex items-center justify-center"
       >
-        <svg
-          id="lightbox-svg"
-          viewBox="0 0 720 240"
-          class="lightbox-svg w-full h-full"
-          preserveAspectRatio="none"
-          aria-hidden="true"
-        >
-          <defs>
-            <linearGradient id="area-lb" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stop-color="#aac976" stop-opacity="0.35"></stop>
-              <stop offset="100%" stop-color="#aac976" stop-opacity="0.03"
-              ></stop>
-            </linearGradient>
-          </defs>
-          <path id="lightbox-area" d="" fill="url(#area-lb)"></path>
-          <path
-            id="lightbox-line"
-            d=""
-            fill="none"
-            stroke="#3f7d4f"
-            stroke-width="3.5"
-            stroke-linecap="round"></path>
-        </svg>
+        <img
+          id="lightbox-img"
+          class="lightbox-svg w-full h-auto max-h-full object-contain block select-none"
+          alt="Google Ads account screenshot — monthly spend growth"
+          draggable="false"
+          src=""
+        />
       </div>
     </div>
 
@@ -616,14 +591,12 @@ const niches = [
 
     // Lightbox
     const lb = document.getElementById("case-lightbox");
-    const lbArea = document.getElementById("lightbox-area");
-    const lbLine = document.getElementById("lightbox-line");
     const lbTitle = document.getElementById("lightbox-title");
     const lbFrom = document.getElementById("lightbox-from");
     const lbTo = document.getElementById("lightbox-to");
-    // --- Pinch / wheel zoom + drag-pan for the enlarged chart ---
+    // --- Pinch / wheel zoom + drag-pan for the enlarged screenshot ---
     const lbStage = document.getElementById("lightbox-stage");
-    const lbSvg = document.getElementById("lightbox-svg");
+    const lbSvg = document.getElementById("lightbox-img");
     const MIN = 1,
       MAX = 5;
     let scale = 1,
@@ -765,9 +738,7 @@ const niches = [
     );
 
     function openLb(btn) {
-      const chart = btn.getAttribute("data-chart");
-      lbArea.setAttribute("d", chart + " L720,240 L0,240 Z");
-      lbLine.setAttribute("d", chart);
+      lbSvg.setAttribute("src", btn.getAttribute("data-img"));
       lbTitle.textContent = btn.getAttribute("data-org");
       lbFrom.textContent = btn.getAttribute("data-from");
       lbTo.textContent = btn.getAttribute("data-to");

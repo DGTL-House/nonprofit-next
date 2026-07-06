@@ -2,10 +2,10 @@
 import { BOOK_HREF, CTA_PRIMARY } from "../consts";
 
 const guarantees = [
-  "Free",
-  "No commitment",
-  "Actionable plan, yours to keep",
-  "Nonprofit expertise",
+  { icon: "🎯", title: "Free", desc: "No hidden costs, ever" },
+  { icon: "🤝", title: "No strings", desc: "Walk away anytime" },
+  { icon: "📋", title: "Yours to keep", desc: "Actionable plan you own" },
+  { icon: "🏛️", title: "Nonprofit-first", desc: "Built for your world" },
 ];
 ---
 
@@ -16,15 +16,25 @@ const guarantees = [
 
   <div class="relative max-w-3xl mx-auto px-4 sm:px-6 text-center">
     <div class="reveal">
-      <!-- Dynamic counter -->
-      <div class="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-[#b33d27]/8 border border-[#b33d27]/20 mb-6">
-        <span class="relative flex h-2.5 w-2.5">
-          <span class="absolute inline-flex h-full w-full rounded-full bg-[#b33d27] opacity-50 animate-ping"></span>
-          <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#b33d27]"></span>
+      <!-- Live scarcity counter — spots deplete while you read the page -->
+      <div id="spots-widget" class="inline-flex flex-col items-center mb-7 sm:mb-9">
+        <span class="inline-flex items-center gap-2 text-[11px] sm:text-xs font-bold uppercase tracking-[0.18em] text-[#b33d27]">
+          <span class="relative flex h-2.5 w-2.5">
+            <span class="absolute inline-flex h-full w-full rounded-full bg-[#b33d27] opacity-50 animate-ping"></span>
+            <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#b33d27]"></span>
+          </span>
+          <span id="spots-label">Spots left this month</span>
         </span>
-        <span id="spots-counter" class="text-[#b33d27] text-sm sm:text-base font-bold">
-          This month — limited spots out of 10
-        </span>
+
+        <!-- 10 dots: filled = still available, dimmed = already taken -->
+        <div id="spots-dots" class="flex items-center gap-1.5 sm:gap-2 mt-4" aria-hidden="true"></div>
+
+        <div class="mt-3 flex flex-col items-center" aria-live="polite">
+          <span id="spots-number" class="spot-number text-6xl sm:text-7xl font-black leading-none text-[#3f5028]">8</span>
+          <span class="mt-2 text-[#52504c] text-sm sm:text-base font-semibold">
+            of <span class="text-[#161514] font-bold">10</span> spots remaining
+          </span>
+        </div>
       </div>
 
       <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black text-[#161514] leading-tight mb-5">
@@ -37,14 +47,21 @@ const guarantees = [
         because quality comes first. It's free, and the plan is yours to keep.
       </p>
 
-      <!-- Guarantee recap -->
-      <div class="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 mb-8">
+      <!-- Guarantee recap cards -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 mb-8">
         {
           guarantees.map((g) => (
-            <span class="inline-flex items-center gap-1.5 text-[#3f5028] text-sm sm:text-base font-semibold">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#3f5028" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12" /></svg>
-              {g}
-            </span>
+            <div class="glass-card lift rounded-2xl p-4 sm:p-5 text-center">
+              <div class="text-3xl sm:text-4xl mb-2" aria-hidden="true">
+                {g.icon}
+              </div>
+              <div class="text-[#161514] font-bold text-sm sm:text-base leading-tight">
+                {g.title}
+              </div>
+              <div class="text-[#7a7770] text-xs sm:text-sm mt-1 leading-snug">
+                {g.desc}
+              </div>
+            </div>
           ))
         }
       </div>
@@ -81,21 +98,85 @@ const guarantees = [
 
 <script is:inline>
   (function () {
-    // "[Month] — [N] spots remaining out of 10". N tapers as the month
-    // progresses so the scarcity reads as live without a backend.
-    var el = document.getElementById("spots-counter");
-    if (!el) return;
-    var now = new Date();
-    var month = now.toLocaleString("en-US", { month: "long" });
-    var day = now.getDate();
-    var daysInMonth = new Date(
-      now.getFullYear(),
-      now.getMonth() + 1,
-      0,
-    ).getDate();
-    // 10 spots at the start of the month → ~1 near the end.
-    var left = Math.max(1, Math.round(10 - (day / daysInMonth) * 9));
-    var noun = left === 1 ? "spot" : "spots";
-    el.textContent = month + " — " + left + " " + noun + " remaining out of 10";
+    var widget = document.getElementById("spots-widget");
+    var numEl = document.getElementById("spots-number");
+    var dotsEl = document.getElementById("spots-dots");
+    var labelEl = document.getElementById("spots-label");
+    if (!widget || !numEl || !dotsEl) return;
+
+    var TOTAL = 10;
+    var left = 8; // spots shown when the visitor arrives
+    var FLOOR = 6; // countdown stops here so it never bottoms out at 0
+
+    // Live month name in the label.
+    try {
+      var m = new Date().toLocaleString("en-US", { month: "long" });
+      if (labelEl) labelEl.textContent = "Spots left in " + m;
+    } catch (e) {}
+
+    // Build the 10 dots; the first `left` are available, the rest taken.
+    var dots = [];
+    for (var i = 0; i < TOTAL; i++) {
+      var d = document.createElement("span");
+      d.className = "spot-dot" + (i >= left ? " is-taken" : "");
+      dotsEl.appendChild(d);
+      dots.push(d);
+    }
+
+    var reduce =
+      window.matchMedia &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    function decrement() {
+      if (left <= FLOOR) return;
+      left--;
+      var d = dots[left]; // the dot that just got claimed
+      if (d) {
+        if (reduce) {
+          d.classList.add("is-taken");
+        } else {
+          d.classList.add("just-taken");
+          setTimeout(function () {
+            d.classList.remove("just-taken");
+            d.classList.add("is-taken");
+          }, 700);
+        }
+      }
+      numEl.textContent = left;
+      if (!reduce) {
+        numEl.classList.remove("pop");
+        void numEl.offsetWidth; // restart the animation
+        numEl.classList.add("pop", "flash-red");
+        setTimeout(function () {
+          numEl.classList.remove("flash-red");
+        }, 700);
+      }
+    }
+
+    // Start the countdown only once the block is actually seen.
+    var started = false;
+    function start() {
+      if (started) return;
+      started = true;
+      setTimeout(decrement, 2200); // 8 → 7 a couple seconds after arriving
+      setTimeout(decrement, 2200 + 26000); // 7 → 6 a while later
+    }
+
+    if ("IntersectionObserver" in window) {
+      var io = new IntersectionObserver(
+        function (entries) {
+          entries.forEach(function (e) {
+            if (e.isIntersecting) {
+              start();
+              io.disconnect();
+            }
+          });
+        },
+        { threshold: 0.5 },
+      );
+      io.observe(widget);
+    } else {
+      start();
+    }
   })();
 </script>

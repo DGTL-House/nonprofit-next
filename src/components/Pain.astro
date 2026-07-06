@@ -1,4 +1,6 @@
 ---
+import { BOOK_HREF, CTA_PRIMARY } from "../consts";
+
 // Block 3 — Pain Section. Icon + bold title + 1-2 sentences, brand muted-red.
 const pains = [
   {
@@ -71,6 +73,15 @@ const pains = [
           the account is set up.
         </p>
       </div>
+    </div>
+
+    <div class="flex justify-center mt-12 reveal">
+      <a
+        href={BOOK_HREF}
+        class="btn-primary text-base sm:text-2xl !py-3 sm:!py-4 !px-8 sm:!px-10"
+      >
+        {CTA_PRIMARY} →
+      </a>
     </div>
   </div>
 </section>
