@@ -69,17 +69,15 @@ const guarantees = [
       <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 mb-8">
         {
           guarantees.map((g) => (
-            <div class="glass-card lift rounded-2xl p-3 sm:p-5 flex items-center gap-2.5 text-left sm:flex-col sm:gap-0 sm:text-center">
-              <div class="text-2xl sm:text-4xl shrink-0 sm:mb-2" aria-hidden="true">
+            <div class="glass-card lift rounded-2xl p-4 sm:p-5 text-center">
+              <div class="text-3xl sm:text-4xl mb-2" aria-hidden="true">
                 {g.icon}
               </div>
-              <div>
-                <div class="text-[#161514] font-bold text-sm sm:text-base leading-tight">
-                  {g.title}
-                </div>
-                <div class="text-[#7a7770] text-xs sm:text-sm mt-0.5 sm:mt-1 leading-snug">
-                  {g.desc}
-                </div>
+              <div class="text-[#161514] font-bold text-sm sm:text-base leading-tight">
+                {g.title}
+              </div>
+              <div class="text-[#7a7770] text-xs sm:text-sm mt-1 leading-snug">
+                {g.desc}
               </div>
             </div>
           ))
