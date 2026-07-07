@@ -673,6 +673,67 @@ textarea::placeholder {
     pointer-events: auto;
 }
 
+/* Each nav item is now its own standalone green pill. */
+.switch-pill {
+    background: #3f5028;
+    color: #eaf6cc;
+    border: 1px solid rgba(170, 201, 118, 0.55);
+    box-shadow: 0 6px 18px rgba(63, 80, 40, 0.35);
+    text-decoration: none;
+    /* springy release so a tap bounces back */
+    transition:
+        transform 0.22s cubic-bezier(0.34, 1.56, 0.64, 1),
+        background 0.2s ease,
+        color 0.2s ease,
+        box-shadow 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.switch-pill:hover {
+    background: #4d6132;
+    color: #ffffff;
+    transform: translateY(-1px);
+}
+
+/* Press feedback — pushes in on hold (works for mouse and touch). */
+.switch-pill:active {
+    transform: scale(0.9);
+    box-shadow: 0 2px 8px rgba(63, 80, 40, 0.45);
+}
+
+/* Section currently in view — bright lime pill. */
+.switch-pill.is-active {
+    background: #c4ed82;
+    color: #2d3a1c;
+    border-color: #c4ed82;
+    box-shadow: 0 8px 22px rgba(170, 201, 118, 0.55);
+}
+
+/* Click "pop" — a quick bounce played via JS on tap. */
+@keyframes switch-pop {
+    0% {
+        transform: scale(0.9);
+    }
+    55% {
+        transform: scale(1.09);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.switch-pill.tapped {
+    animation: switch-pop 0.34s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .switch-pill,
+    .switch-pill.tapped {
+        transition: none;
+        animation: none;
+    }
+}
+
 /* --------- Pain-card icon tile --------- */
 .pain-icon {
     width: 2.75rem;

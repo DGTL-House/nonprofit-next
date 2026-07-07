@@ -1,5 +1,5 @@
 ---
-import { BOOK_HREF, CTA_PRIMARY } from "../consts";
+import { BOOK_HREF } from "../consts";
 
 const guarantees = [
   { icon: "🎯", title: "Free", desc: "No hidden costs, ever" },
@@ -10,13 +10,18 @@ const guarantees = [
 ---
 
 <!-- Block 8 — Final CTA + Urgency -->
-<section id="book" class="relative py-16 sm:py-24 overflow-hidden bg-[#ffffff]">
+<section class="relative pt-8 sm:pt-12 pb-16 sm:pb-24 overflow-hidden bg-[#ffffff]">
   <div class="absolute inset-0 grid-bg opacity-25 pointer-events-none"></div>
   <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[480px] bg-[#aac976]/15 rounded-full blur-[170px] pointer-events-none"></div>
 
   <div class="relative max-w-3xl mx-auto px-4 sm:px-6 text-center">
     <div class="reveal">
-      <!-- Live scarcity counter — spots deplete while you read the page -->
+      <!-- Live scarcity counter — spots deplete while you read the page.
+           #book anchor lives here so CTAs land right on the counter, just
+           below the header, instead of ~190px into the section. The negative
+           scroll-margin trims the global 96px scroll-padding down to a snug
+           header clearance. -->
+      <div id="book" class="scroll-mt-4 sm:scroll-mt-6"></div>
       <div id="spots-widget" class="inline-flex flex-col items-center mb-7 sm:mb-9">
         <span class="inline-flex items-center gap-2 text-[11px] sm:text-xs font-bold uppercase tracking-[0.18em] text-[#b33d27]">
           <span class="relative flex h-2.5 w-2.5">
@@ -47,29 +52,10 @@ const guarantees = [
         because quality comes first. It's free, and the plan is yours to keep.
       </p>
 
-      <!-- Guarantee recap cards -->
-      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 mb-8">
-        {
-          guarantees.map((g) => (
-            <div class="glass-card lift rounded-2xl p-4 sm:p-5 text-center">
-              <div class="text-3xl sm:text-4xl mb-2" aria-hidden="true">
-                {g.icon}
-              </div>
-              <div class="text-[#161514] font-bold text-sm sm:text-base leading-tight">
-                {g.title}
-              </div>
-              <div class="text-[#7a7770] text-xs sm:text-sm mt-1 leading-snug">
-                {g.desc}
-              </div>
-            </div>
-          ))
-        }
-      </div>
-
       <!-- CTA -->
-      <div class="flex flex-col items-center gap-3">
+      <div class="flex flex-col items-center gap-3 mb-8">
         <a href={BOOK_HREF} class="btn-primary attention-pulse text-base sm:text-2xl !py-3.5 sm:!py-4 !px-8 sm:!px-12">
-          {CTA_PRIMARY} →
+          Schedule a Call →
         </a>
         <div class="flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-[#7a7770] text-sm sm:text-base font-medium">
           <span>No pressure</span>
@@ -78,6 +64,27 @@ const guarantees = [
           <span class="w-1 h-1 rounded-full bg-[#cfcfcf]"></span>
           <span>2 short calls</span>
         </div>
+      </div>
+
+      <!-- Guarantee recap cards -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 mb-8">
+        {
+          guarantees.map((g) => (
+            <div class="glass-card lift rounded-2xl p-3 sm:p-5 flex items-center gap-2.5 text-left sm:flex-col sm:gap-0 sm:text-center">
+              <div class="text-2xl sm:text-4xl shrink-0 sm:mb-2" aria-hidden="true">
+                {g.icon}
+              </div>
+              <div>
+                <div class="text-[#161514] font-bold text-sm sm:text-base leading-tight">
+                  {g.title}
+                </div>
+                <div class="text-[#7a7770] text-xs sm:text-sm mt-0.5 sm:mt-1 leading-snug">
+                  {g.desc}
+                </div>
+              </div>
+            </div>
+          ))
+        }
       </div>
 
       <!-- Scarcity + waitlist notes -->

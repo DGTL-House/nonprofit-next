@@ -12,25 +12,20 @@ import { SWITCH_BLOCKS } from "../consts";
   class="block-switcher fixed bottom-5 left-1/2 -translate-x-1/2 z-40 px-2 sm:px-2.5"
   aria-label="Jump to section"
 >
-  <div
-    class="flex items-center gap-1 rounded-full bg-[#3f5028] backdrop-blur-lg border border-[#aac976]/60 shadow-[0_10px_34px_rgba(63,80,40,0.45),0_0_0_1px_rgba(170,201,118,0.25)] p-1.5"
-  >
-    <span
-      class="hidden sm:flex items-center pl-3 pr-1 text-[11px] font-bold uppercase tracking-wider text-[#c4ed82]"
-    >
-      Jump to
-    </span>
-    {
-      SWITCH_BLOCKS.map((link) => (
-        <a
-          href={link.href}
-          data-switch={link.href}
-          class="px-3.5 sm:px-4 py-2 rounded-full text-[13px] sm:text-sm font-semibold text-[#eaf6cc] hover:text-[#ffffff] hover:bg-[#4d6132] transition-colors whitespace-nowrap"
-        >
-          {link.label}
-        </a>
-      ))
-    }
+  <div class="flex flex-col items-center gap-2">
+    <div class="flex items-center justify-center gap-2 sm:gap-2.5">
+      {
+        SWITCH_BLOCKS.map((link) => (
+          <a
+            href={link.href}
+            data-switch={link.href}
+            class="switch-pill backdrop-blur-lg px-3.5 sm:px-4 py-2 rounded-full text-[13px] sm:text-sm font-semibold whitespace-nowrap"
+          >
+            {link.label}
+          </a>
+        ))
+      }
+    </div>
   </div>
 </div>
 
@@ -54,13 +49,26 @@ import { SWITCH_BLOCKS } from "../consts";
       links.forEach(function (l) {
         const on = l.getAttribute("data-switch") === "#" + id;
         // Bright lime pill for the section currently in view.
-        l.classList.toggle("bg-[#c4ed82]", on);
-        l.classList.toggle("text-[#2d3a1c]", on);
-        l.classList.toggle("shadow-sm", on);
-        l.classList.toggle("text-[#eaf6cc]", !on);
+        l.classList.toggle("is-active", on);
         l.setAttribute("aria-current", on ? "true" : "false");
       });
     }
+
+    // Tap "pop" bounce on each pill.
+    var reduceMotion =
+      window.matchMedia &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    links.forEach(function (l) {
+      l.addEventListener("pointerdown", function () {
+        if (reduceMotion) return;
+        l.classList.remove("tapped");
+        void l.offsetWidth; // restart the animation
+        l.classList.add("tapped");
+      });
+      l.addEventListener("animationend", function () {
+        l.classList.remove("tapped");
+      });
+    });
 
     // Show the switcher only after the hero scrolls away.
     const hero = document.getElementById("hero");
