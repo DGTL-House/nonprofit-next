@@ -3,7 +3,8 @@
 // Primary CTA target. The reference project points its CTAs at a LeadConnector
 // booking widget; here we anchor to the on-page booking/final-CTA section so the
 // page is fully functional without a backend. Swap to a real URL when wired up.
-export const BOOK_HREF = "#book";
+export const BOOK_HREF =
+  "https://api.dgtl-house.com/widget/bookings/dgtlhouse-nonprofits";
 
 export const CTA_PRIMARY = "Get My Free Audit";
 export const CTA_SECONDARY = "Book a Free Audit";

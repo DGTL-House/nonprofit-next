@@ -88,7 +88,7 @@ const guarantees = [
           href={BOOK_HREF}
           class="btn-primary attention-pulse w-full mt-6 text-base sm:text-2xl !py-3.5 sm:!py-4"
         >
-          Claim my audit →
+          Schedule a Call — It's Free →
         </a>
 
         <!-- 6 — Live scarcity line, right under the CTA -->
@@ -225,7 +225,12 @@ const guarantees = [
       } catch (e) {}
 
       var remaining = deadline - Date.now();
-      if (!deadline || isNaN(deadline) || remaining <= 0 || remaining > WINDOW_MS) {
+      if (
+        !deadline ||
+        isNaN(deadline) ||
+        remaining <= 0 ||
+        remaining > WINDOW_MS
+      ) {
         deadline = Date.now() + WINDOW_MS;
         try {
           window.localStorage.setItem(KEY, String(deadline));
