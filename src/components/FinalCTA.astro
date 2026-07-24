@@ -1,6 +1,11 @@
 ---
 import { BOOK_HREF } from "../consts";
 
+// Offer economics — savings is derived so the three numbers can never drift.
+const PRICE_REGULAR = 800;
+const PRICE_NOW = 49;
+const SAVINGS = PRICE_REGULAR - PRICE_NOW;
+
 const guarantees = [
   { icon: "🎯", title: "Free", desc: "No hidden costs, ever" },
   { icon: "🤝", title: "No strings", desc: "Walk away anytime" },
@@ -20,20 +25,20 @@ const guarantees = [
 
   <div class="relative max-w-3xl mx-auto px-4 sm:px-6 text-center">
     <div class="reveal">
-      <!-- Live scarcity counter — spots deplete while you read the page.
-           #book anchor lives here so CTAs land right on the counter, just
-           below the header, instead of ~190px into the section. The negative
-           scroll-margin trims the global 96px scroll-padding down to a snug
-           header clearance. -->
+      <!-- #book anchor lives here so CTAs land right on the offer card, just
+           below the header, instead of deep inside the section. -->
       <div id="book" class="scroll-mt-4 sm:scroll-mt-6"></div>
+
+      <!-- Offer card -->
       <div
-        id="spots-widget"
-        class="inline-flex flex-col items-center mb-7 sm:mb-9"
+        id="offer-card"
+        class="glass-card rounded-3xl px-5 py-7 sm:px-10 sm:py-10 shadow-[0_20px_50px_rgba(63,80,40,0.10)]"
       >
+        <!-- 1 — Live scarcity line -->
         <span
           class="inline-flex items-center gap-2 text-[11px] sm:text-xs font-bold uppercase tracking-[0.18em] text-[#b33d27]"
         >
-          <span class="relative flex h-2.5 w-2.5">
+          <span class="relative flex h-2.5 w-2.5 shrink-0">
             <span
               class="absolute inline-flex h-full w-full rounded-full bg-[#b33d27] opacity-50 animate-ping"
             ></span>
@@ -41,54 +46,72 @@ const guarantees = [
               class="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#b33d27]"
             ></span>
           </span>
-          <span id="spots-label">Spots left this month</span>
+          <span aria-live="polite">
+            <span id="spots-count" class="spot-number">3</span> spots left in
+            <span id="spots-month">July</span>
+          </span>
         </span>
 
-        <!-- 10 dots: filled = still available, dimmed = already taken -->
-        <div
-          id="spots-dots"
-          class="flex items-center gap-1.5 sm:gap-2 mt-4"
-          aria-hidden="true"
-        >
-        </div>
+        <!-- 2 — Value anchor -->
+        <p class="mt-5 text-[#52504c] text-sm sm:text-lg leading-relaxed">
+          A senior specialist audit normally costs
+          <span class="line-through text-[#9a9890]">${PRICE_REGULAR}</span>.
+        </p>
 
-        <div class="mt-3 flex flex-col items-center" aria-live="polite">
+        <!-- 3 — This month's price -->
+        <div class="mt-2 flex items-baseline justify-center gap-2 sm:gap-3">
+          <span class="text-[#52504c] text-base sm:text-2xl font-medium">
+            This month:
+          </span>
           <span
-            id="spots-number"
-            class="spot-number text-6xl sm:text-7xl font-black leading-none text-[#3f5028]"
-            >4</span
+            class="text-5xl sm:text-7xl font-bold leading-none tracking-tight text-[#161514]"
           >
-          <span class="mt-2 text-[#52504c] text-sm sm:text-base font-semibold">
-            of <span class="text-[#161514] font-bold">10</span> spots remaining
+            ${PRICE_NOW}
           </span>
         </div>
-      </div>
 
-      <h2
-        class="text-3xl sm:text-4xl lg:text-5xl font-black text-[#161514] leading-tight mb-5"
-      >
-        Find out in 30 minutes what's stopping your grant from
-        <span class="gradient-text-lime">working</span>
-      </h2>
+        <!-- 4 — Savings accent -->
+        <p class="mt-2.5 text-[#188038] text-base sm:text-xl font-bold">
+          You save ${SAVINGS}.
+        </p>
 
-      <p
-        class="text-[#52504c] text-base sm:text-xl leading-relaxed max-w-2xl mx-auto mb-6"
-      >
-        We take on only <strong class="text-[#161514]"
-          >10 audits per month</strong
-        > — because quality comes first. The plan is yours to keep.
-      </p>
+        <!-- 5 — Countdown -->
+        <div
+          class="mt-5 inline-flex items-center gap-2 text-[#52504c] text-xs sm:text-sm font-medium"
+        >
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="shrink-0"
+            aria-hidden="true"
+            ><circle cx="12" cy="12" r="10"></circle><polyline
+              points="12 6 12 12 16 14"></polyline></svg
+          >
+          <span>Offer expires in</span>
+          <span
+            id="offer-timer"
+            class="font-mono font-bold text-[#161514] bg-[#f0eee6] rounded-md px-2 py-0.5 tabular-nums"
+            >03:00:00</span
+          >
+        </div>
 
-      <!-- CTA -->
-      <div class="flex flex-col items-center gap-3 mb-8">
+        <!-- 6 — Full-width CTA -->
         <a
           href={BOOK_HREF}
-          class="btn-primary attention-pulse text-base sm:text-2xl !py-3.5 sm:!py-4 !px-8 sm:!px-12"
+          class="btn-primary attention-pulse w-full mt-6 text-base sm:text-2xl !py-3.5 sm:!py-4"
         >
-          Schedule a Call →
+          Claim my audit →
         </a>
+
+        <!-- 7 — Reassurance microcopy -->
         <div
-          class="flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-[#7a7770] text-sm sm:text-base font-medium"
+          class="mt-3 flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-[#7a7770] text-xs sm:text-sm font-medium"
         >
           <span>No pressure</span>
           <span class="w-1 h-1 rounded-full bg-[#cfcfcf]"></span>
@@ -99,7 +122,7 @@ const guarantees = [
       </div>
 
       <!-- Guarantee recap cards -->
-      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 mb-8">
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 mt-8">
         {
           guarantees.map((g) => (
             <div class="glass-card lift rounded-2xl p-4 sm:p-5 text-center">
@@ -136,85 +159,106 @@ const guarantees = [
 
 <script is:inline>
   (function () {
-    var widget = document.getElementById("spots-widget");
-    var numEl = document.getElementById("spots-number");
-    var dotsEl = document.getElementById("spots-dots");
-    var labelEl = document.getElementById("spots-label");
-    if (!widget || !numEl || !dotsEl) return;
-
-    var TOTAL = 10;
-    var left = 4; // spots shown when the visitor arrives
-    var FLOOR = 2; // countdown stops here so it never bottoms out at 0
-
-    // Live month name in the label.
-    try {
-      var m = new Date().toLocaleString("en-US", { month: "long" });
-      if (labelEl) labelEl.textContent = "Spots left in " + m;
-    } catch (e) {}
-
-    // Build the 10 dots; the first `left` are available, the rest taken.
-    var dots = [];
-    for (var i = 0; i < TOTAL; i++) {
-      var d = document.createElement("span");
-      d.className = "spot-dot" + (i >= left ? " is-taken" : "");
-      dotsEl.appendChild(d);
-      dots.push(d);
-    }
+    var card = document.getElementById("offer-card");
+    var countEl = document.getElementById("spots-count");
+    var monthEl = document.getElementById("spots-month");
+    var timerEl = document.getElementById("offer-timer");
+    if (!card) return;
 
     var reduce =
       window.matchMedia &&
       window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-    function decrement() {
-      if (left <= FLOOR) return;
-      left--;
-      var d = dots[left]; // the dot that just got claimed
-      if (d) {
-        if (reduce) {
-          d.classList.add("is-taken");
-        } else {
-          d.classList.add("just-taken");
-          setTimeout(function () {
-            d.classList.remove("just-taken");
-            d.classList.add("is-taken");
-          }, 700);
+    /* ---------- Live month ---------- */
+    try {
+      if (monthEl) {
+        monthEl.textContent = new Date().toLocaleString("en-US", {
+          month: "long",
+        });
+      }
+    } catch (e) {}
+
+    /* ---------- Spots counter: ticks down while you read ---------- */
+    if (countEl) {
+      var left = 3; // spots shown on arrival
+      var FLOOR = 1; // never bottoms out at 0
+      countEl.textContent = left;
+
+      function decrement() {
+        if (left <= FLOOR) return;
+        left--;
+        countEl.textContent = left;
+        if (!reduce) {
+          countEl.classList.remove("pop");
+          void countEl.offsetWidth; // restart the animation
+          countEl.classList.add("pop");
         }
       }
-      numEl.textContent = left;
-      if (!reduce) {
-        numEl.classList.remove("pop");
-        void numEl.offsetWidth; // restart the animation
-        numEl.classList.add("pop", "flash-red");
-        setTimeout(function () {
-          numEl.classList.remove("flash-red");
-        }, 700);
+
+      var started = false;
+      function startCountdown() {
+        if (started) return;
+        started = true;
+        setTimeout(decrement, 2200); // 3 → 2 shortly after arriving
+        setTimeout(decrement, 2200 + 26000); // 2 → 1 a while later
+      }
+
+      if ("IntersectionObserver" in window) {
+        var io = new IntersectionObserver(
+          function (entries) {
+            entries.forEach(function (e) {
+              if (e.isIntersecting) {
+                startCountdown();
+                io.disconnect();
+              }
+            });
+          },
+          { threshold: 0.4 },
+        );
+        io.observe(card);
+      } else {
+        startCountdown();
       }
     }
 
-    // Start the countdown only once the block is actually seen.
-    var started = false;
-    function start() {
-      if (started) return;
-      started = true;
-      setTimeout(decrement, 2200); // 8 → 7 a couple seconds after arriving
-      setTimeout(decrement, 2200 + 26000); // 7 → 6 a while later
-    }
+    /* ---------- Offer countdown timer ----------
+       The deadline is persisted so it keeps running across reloads instead of
+       resetting to a full window every visit. */
+    if (timerEl) {
+      var KEY = "dgtl-offer-deadline";
+      var WINDOW_MS = 3 * 60 * 60 * 1000; // 3 hours
+      var deadline;
 
-    if ("IntersectionObserver" in window) {
-      var io = new IntersectionObserver(
-        function (entries) {
-          entries.forEach(function (e) {
-            if (e.isIntersecting) {
-              start();
-              io.disconnect();
-            }
-          });
-        },
-        { threshold: 0.5 },
-      );
-      io.observe(widget);
-    } else {
-      start();
+      try {
+        deadline = parseInt(window.localStorage.getItem(KEY), 10);
+      } catch (e) {}
+
+      var remaining = deadline - Date.now();
+      if (!deadline || isNaN(deadline) || remaining <= 0 || remaining > WINDOW_MS) {
+        deadline = Date.now() + WINDOW_MS;
+        try {
+          window.localStorage.setItem(KEY, String(deadline));
+        } catch (e) {}
+      }
+
+      var ticker;
+      function pad(n) {
+        return n < 10 ? "0" + n : "" + n;
+      }
+      function tick() {
+        var ms = deadline - Date.now();
+        if (ms < 0) ms = 0;
+        var s = Math.floor(ms / 1000);
+        timerEl.textContent =
+          pad(Math.floor(s / 3600)) +
+          ":" +
+          pad(Math.floor((s % 3600) / 60)) +
+          ":" +
+          pad(s % 60);
+        if (ms <= 0 && ticker) clearInterval(ticker);
+      }
+      tick();
+      ticker = setInterval(tick, 1000);
     }
   })();
 </script>

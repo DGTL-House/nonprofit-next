@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(grep -oE '\\(A senior specialist audit normally costs|\\\\$800|\\\\$49|You save \\\\$751|Offer expires in|Claim my audit|spots left in\\)' dist/index.html)"
+    ]
+  }
+}
