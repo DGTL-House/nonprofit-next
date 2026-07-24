@@ -6,8 +6,8 @@
 export const BOOK_HREF = "#book";
 export const BOOK_CALL =
   "https://api.dgtl-house.com/widget/bookings/dgtlhouse-nonprofits";
-export const CTA_PRIMARY = "Get My Free Audit";
-export const CTA_SECONDARY = "Book a Free Audit";
+export const CTA_PRIMARY = "Get My Audit";
+export const CTA_SECONDARY = "Book Your Audit";
 
 // The three switchable blocks called out in the brief.
 export const SWITCH_BLOCKS = [

@@ -8,8 +8,8 @@ interface Props {
 }
 
 const {
-  title = "Free Google Ad Grants Audit — Hit $10K/Month | DGTL House",
-  description = "Get a free Google Ad Grants audit and a clear, step-by-step plan to hit the full $10,000/month grant spend — and grow your nonprofit's donations.",
+  title = "Google Ad Grants Audit — Hit $10K/Month | DGTL House",
+  description = "Get a Google Ad Grants audit and a clear, step-by-step plan to hit the full $10,000/month grant spend — and grow your nonprofit's donations.",
   image = "/og-image.webp",
 } = Astro.props;
 
@@ -27,7 +27,7 @@ const orgLd = {
   logo: new URL("/nonprofit-logo.svg", siteUrl).href,
   image: ogImage,
   description:
-    "Free Google Ad Grants audits for nonprofits. A specialist reviews your account and gives you a clear, step-by-step action plan to reach the full $10,000/month grant spend.",
+    "Google Ad Grants audits for nonprofits. A specialist reviews your account and gives you a clear, step-by-step action plan to reach the full $10,000/month grant spend.",
   email: "nonprofit@dgtl-house.com",
   telephone: "+12245848401",
   address: {
@@ -55,9 +55,9 @@ const orgLd = {
         priceCurrency: "USD",
         itemOffered: {
           "@type": "Service",
-          name: "Free Google Ad Grants Account Audit",
+          name: "Google Ad Grants Account Audit",
           description:
-            "A 30-minute specialist review of your Google Ad Grants account plus a written action plan — free, no commitment.",
+            "A 30-minute specialist review of your Google Ad Grants account plus a written action plan, no commitment.",
         },
       },
     ],
@@ -67,7 +67,7 @@ const orgLd = {
 const siteLd = {
   "@context": "https://schema.org",
   "@type": "WebSite",
-  name: "DGTL House — Free Google Ad Grants Audit",
+  name: "DGTL House — Google Ad Grants Audit",
   url: siteUrl.href,
   inLanguage: "en-US",
 };
@@ -89,9 +89,12 @@ const siteLd = {
     <meta name="author" content="DGTL House" />
     <meta
       name="keywords"
-      content="Google Ad Grants audit, free Google Ad Grants audit, nonprofit Google Ads, $10000 grant, Google for Nonprofits, Ad Grants management, nonprofit marketing, DGTL House"
+      content="Google Ad Grants audit, Google Ad Grants audit, nonprofit Google Ads, $10000 grant, Google for Nonprofits, Ad Grants management, nonprofit marketing, DGTL House"
     />
-    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
+    <meta
+      name="robots"
+      content="index, follow, max-image-preview:large, max-snippet:-1"
+    />
     <meta name="format-detection" content="telephone=no" />
     <link rel="canonical" href={canonical} />
     <link rel="alternate" hreflang="en" href={canonical} />
@@ -115,7 +118,7 @@ const siteLd = {
     <meta property="og:image:height" content="971" />
     <meta
       property="og:image:alt"
-      content="DGTL House — free Google Ad Grants audit for nonprofits"
+      content="DGTL House — Google Ad Grants audit for nonprofits"
     />
     <meta property="og:locale" content="en_US" />
 
@@ -126,7 +129,7 @@ const siteLd = {
     <meta name="twitter:image" content={ogImage} />
     <meta
       name="twitter:image:alt"
-      content="DGTL House — free Google Ad Grants audit for nonprofits"
+      content="DGTL House — Google Ad Grants audit for nonprofits"
     />
 
     <!-- Structured data -->
@@ -172,7 +175,7 @@ const siteLd = {
     <slot />
 
     <!-- Global scroll-reveal: replaces framer-motion `fadeUp`/stagger from the
-         reference project with a dependency-free IntersectionObserver. -->
+         reference project with a dependency IntersectionObserver. -->
     <script is:inline>
       (function () {
         const reduce = window.matchMedia(

@@ -1,7 +1,8 @@
 {
   "permissions": {
     "allow": [
-      "Bash(grep -oE '\\(A senior specialist audit normally costs|\\\\$800|\\\\$49|You save \\\\$751|Offer expires in|Claim my audit|spots left in\\)' dist/index.html)"
+      "Bash(grep -oE '\\(A senior specialist audit normally costs|\\\\$800|\\\\$49|You save \\\\$751|Offer expires in|Claim my audit|spots left in\\)' dist/index.html)",
+      "Bash(grep -oE '\\(Save \\\\$751|\\\\$800|\\\\$49|Offer ends in|Schedule a Call|No commitment · 30 min|Limited availability|spots left|10 audits per month\\)' dist/index.html)"
     ]
   }
 }

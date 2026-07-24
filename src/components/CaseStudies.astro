@@ -38,7 +38,7 @@ const cases = [
     spendFrom: "$500",
     spendTo: "~$10,000",
     budget: "20× growth",
-    img: "/img/account2.png",
+    img: "/img/case_2.png",
     chart:
       "M0,206 C110,202 170,190 240,176 C310,162 350,128 420,104 C480,84 520,60 600,40 C650,28 690,22 720,18",
     before:
@@ -63,7 +63,7 @@ const cases = [
     spendFrom: "$0",
     spendTo: "~$10,000",
     budget: "$0 → ~$10,000/mo",
-    img: "/img/account3.png",
+    img: "/img/case_3.png",
     chart:
       "M0,210 C120,205 180,196 240,170 C300,146 330,120 400,96 C470,72 520,52 600,36 C650,26 690,20 720,16",
     before:
@@ -88,7 +88,7 @@ const cases = [
     spendFrom: "$0",
     spendTo: "~$10,000",
     budget: "~100%",
-    img: "/img/account4.png",
+    img: "/img/case_4.png",
     chart:
       "M0,224 C130,222 200,216 270,196 C340,176 380,140 450,110 C520,80 560,52 620,36 C665,24 695,18 720,15",
     before:
@@ -213,13 +213,13 @@ const niches = [
                   </div>
 
                   {/* Screenshot with a loud zoom affordance overlaid */}
-                  <div class="zoom-frame relative rounded-xl overflow-hidden border border-[#e2e6d3] bg-[#ffffff]">
+                  <div class="zoom-frame relative aspect-[2/1] rounded-xl overflow-hidden border border-[#e2e6d3] bg-[#ffffff]">
                     <img
                       src={c.img}
                       alt={`${c.org} — Google Ads monthly spend growing to ${c.spendTo}`}
                       loading="lazy"
                       decoding="async"
-                      class="w-full h-auto block select-none transition-transform duration-500 group-hover:scale-[1.03]"
+                      class="w-full h-full object-cover block select-none transition-transform duration-500 group-hover:scale-[1.03]"
                     />
 
                     {/* Hover/desktop dim + big magnifier */}
