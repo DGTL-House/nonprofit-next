@@ -38,26 +38,50 @@ const pains = [
 
 <!-- Block 3 — Pain Section -->
 <section id="pain" class="relative py-16 sm:py-24 overflow-hidden bg-[#f8f7f3]">
-  <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-[#b33d27]/5 rounded-full blur-[150px] pointer-events-none"></div>
+  <div
+    class="absolute top-0 right-0 w-[500px] h-[500px] bg-[#b33d27]/5 rounded-full blur-[150px] pointer-events-none"
+  >
+  </div>
 
   <div class="max-w-6xl mx-auto px-4 sm:px-6">
     <div class="text-center max-w-3xl mx-auto mb-12 sm:mb-16 reveal">
-      <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black text-[#161514] leading-tight mb-4">
+      <h2
+        class="text-3xl sm:text-4xl lg:text-5xl font-black text-[#161514] leading-tight mb-4"
+      >
         You have the grant. But the results
-        <span class="text-[#b33d27]">aren't coming.</span>
+        <span class="text-[#b33d27]"> aren't coming.</span>
       </h2>
-      <p class="text-[#52504c] text-base sm:text-xl">Do any of these sound familiar?</p>
+      <p class="text-[#52504c] text-base sm:text-xl">
+        Do any of these sound familiar?
+      </p>
     </div>
 
-    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 reveal-stagger">
+    <div
+      class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 reveal-stagger"
+    >
       {
         pains.map((pain) => (
           <div class="glass-card lift rounded-2xl p-6 group">
             <div class="pain-icon mb-4 group-hover:scale-110 transition-transform">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#b33d27" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" set:html={pain.icon} />
+              <svg
+                width="22"
+                height="22"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#b33d27"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+                set:html={pain.icon}
+              />
             </div>
-            <h3 class="text-[#b33d27] font-bold text-base sm:text-lg mb-2">{pain.title}</h3>
-            <p class="text-[#52504c] text-sm sm:text-base leading-relaxed">{pain.desc}</p>
+            <h3 class="text-[#b33d27] font-bold text-base sm:text-lg mb-2">
+              {pain.title}
+            </h3>
+            <p class="text-[#52504c] text-sm sm:text-base leading-relaxed">
+              {pain.desc}
+            </p>
           </div>
         ))
       }
@@ -65,10 +89,18 @@ const pains = [
 
     <!-- Callout card -->
     <div class="mt-8 reveal">
-      <div class="rounded-2xl p-6 sm:p-8 bg-gradient-to-r from-[#b33d27]/10 via-[#b33d27]/[0.04] to-[#b33d27]/10 border border-[#b33d27]/15">
-        <p class="text-[#161514] text-center text-sm sm:text-lg leading-relaxed max-w-3xl mx-auto">
-          If you recognise yourself here — <span class="font-bold">you're not alone.</span>
-          Based on our data, <span class="text-[#b33d27] font-bold">8 out of 10 Google Ad Grants run at 10–20% of their potential.</span>
+      <div
+        class="rounded-2xl p-6 sm:p-8 bg-gradient-to-r from-[#b33d27]/10 via-[#b33d27]/[0.04] to-[#b33d27]/10 border border-[#b33d27]/15"
+      >
+        <p
+          class="text-[#161514] text-center text-sm sm:text-lg leading-relaxed max-w-3xl mx-auto"
+        >
+          If you recognise yourself here — <span class="font-bold"
+            >you're not alone.</span
+          >{" "}
+          Based on our data, <span class="text-[#b33d27] font-bold"
+            >8 out of 10 Google Ad Grants run at 10–20% of their potential.</span
+          >{" "}
           And in almost every case, the problem isn't the grant itself — it's how
           the account is set up.
         </p>
