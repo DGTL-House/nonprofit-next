@@ -15,7 +15,7 @@ const {
 
 // Build absolute URLs from the configured `site` so canonical/OG are correct
 // in any environment. Falls back gracefully when `site` is unset (dev).
-const siteUrl = Astro.site ?? new URL("https://grants.dgtl-house.com");
+const siteUrl = Astro.site ?? new URL("https://audit-nonprofit.dgtl-house.com");
 const canonical = new URL(Astro.url.pathname, siteUrl).href;
 const ogImage = new URL(image, siteUrl).href;
 

@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://grants.dgtl-house.com/sitemap-index.xml
+Sitemap: https://audit-nonprofit.dgtl-house.com/sitemap-index.xml

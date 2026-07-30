@@ -8,7 +8,7 @@ import sitemap from "@astrojs/sitemap";
 // `nonprofit` reference project) so the ported design tokens resolve identically.
 // `site` powers canonical/OG absolute URLs and the generated sitemap.
 export default defineConfig({
-  site: "https://grants.dgtl-house.com",
+  site: "https://audit-nonprofit.dgtl-house.com",
   integrations: [
     sitemap({
       serialize(item) {
