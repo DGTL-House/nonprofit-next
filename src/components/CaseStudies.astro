@@ -12,7 +12,7 @@ const cases = [
     spendFrom: "$200",
     spendTo: "$7,600",
     budget: "$0 → $7,600/mo",
-    img: "/img/case_1.png",
+    img: "/img/case_1.webp",
     // smooth area path inside a 0..720 x 0..240 viewBox
     chart:
       "M0,214 C120,210 180,202 250,184 C320,166 360,132 430,106 C500,80 540,56 610,38 C660,26 695,20 720,16",
@@ -38,7 +38,7 @@ const cases = [
     spendFrom: "$500",
     spendTo: "~$10,000",
     budget: "20× growth",
-    img: "/img/case_2.png",
+    img: "/img/case_2.webp",
     chart:
       "M0,206 C110,202 170,190 240,176 C310,162 350,128 420,104 C480,84 520,60 600,40 C650,28 690,22 720,18",
     before:
@@ -63,7 +63,7 @@ const cases = [
     spendFrom: "$0",
     spendTo: "~$10,000",
     budget: "$0 → ~$10,000/mo",
-    img: "/img/case_3.png",
+    img: "/img/case_3.webp",
     chart:
       "M0,210 C120,205 180,196 240,170 C300,146 330,120 400,96 C470,72 520,52 600,36 C650,26 690,20 720,16",
     before:
@@ -88,7 +88,7 @@ const cases = [
     spendFrom: "$0",
     spendTo: "~$10,000",
     budget: "~100%",
-    img: "/img/case_4.png",
+    img: "/img/case_4.webp",
     chart:
       "M0,224 C130,222 200,216 270,196 C340,176 380,140 450,110 C520,80 560,52 620,36 C665,24 695,18 720,15",
     before:
@@ -217,6 +217,8 @@ const niches = [
                     <img
                       src={c.img}
                       alt={`${c.org} — Google Ads monthly spend growing to ${c.spendTo}`}
+                      width="1150"
+                      height="575"
                       loading="lazy"
                       decoding="async"
                       class="w-full h-full object-cover block select-none transition-transform duration-500 group-hover:scale-[1.03]"
@@ -486,12 +488,14 @@ const niches = [
         id="lightbox-stage"
         class="lightbox-stage w-full max-h-full overflow-hidden rounded-xl bg-[#ffffff] border border-[#e7eed5] flex items-center justify-center"
       >
+        <!-- No `src` until a card is clicked: an empty `src=""` resolves to the
+             document URL, making the browser re-download this page as an image. -->
         <img
           id="lightbox-img"
           class="lightbox-svg w-full h-auto max-h-full object-contain block select-none"
           alt="Google Ads account screenshot — monthly spend growth"
           draggable="false"
-          src=""
+          decoding="async"
         />
       </div>
     </div>
