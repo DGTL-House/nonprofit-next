@@ -174,6 +174,13 @@ const siteLd = {
   <body class="min-h-screen bg-[#ffffff]">
     <slot />
 
+    <!-- Forward UTM / click-id params (fbclid, gclid, utm_*) from the landing
+         URL onto the outbound booking-widget links, so the CRM receives them. -->
+    <script>
+      import { initUtmForwarding } from "../scripts/utm";
+      initUtmForwarding();
+    </script>
+
     <!-- Global scroll-reveal: replaces framer-motion `fadeUp`/stagger from the
          reference project with a dependency IntersectionObserver. -->
     <script is:inline>
