@@ -3,12 +3,12 @@ import { defineConfig } from "astro/config";
 import tailwindcss from "@tailwindcss/vite";
 import sitemap from "@astrojs/sitemap";
 
-// DGTL House — Free Google Ad Grants Audit landing.
+// DGTL House — Free Google Ad Grant consultation landing.
 // Static output; Tailwind v4 wired through the Vite plugin (same setup as the
 // `nonprofit` reference project) so the ported design tokens resolve identically.
 // `site` powers canonical/OG absolute URLs and the generated sitemap.
 export default defineConfig({
-  site: "https://audit-nonprofit.dgtl-house.com",
+  site: "https://nonprofit-growth.dgtl-house.com",
   integrations: [
     sitemap({
       serialize(item) {

@@ -1,4 +1,4 @@
-// Shared content + config for the DGTL House audit landing.
+// Shared content + config for the DGTL House free-consultation landing.
 
 // Primary CTA target. The reference project points its CTAs at a LeadConnector
 // booking widget; here we anchor to the on-page booking/final-CTA section so the
@@ -6,8 +6,7 @@
 export const BOOK_HREF = "#book";
 export const BOOK_CALL =
   "https://api.dgtl-house.com/widget/bookings/dgtlhouse-nonprofits";
-export const CTA_PRIMARY = "Get My Audit";
-export const CTA_SECONDARY = "Book Your Audit";
+export const CTA_PRIMARY = "Book a Free Consultation";
 
 // The three switchable blocks called out in the brief.
 export const SWITCH_BLOCKS = [

@@ -5,15 +5,35 @@ import { BOOK_HREF, CTA_PRIMARY } from "../consts";
 const steps = [
   {
     num: "01",
-    title: "Book a Session",
+    title: "Book a Free Consultation",
     desc: "Pick a time that works for you. Takes 30 seconds.",
     icon: `<rect width="18" height="18" x="3" y="4" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/><path d="m9 16 2 2 4-4"/>`,
   },
   {
     num: "02",
     title: "30-min Google Meet with a specialist",
-    desc: "We review your grant account together, identify exactly what's not working, and tell you what needs to change. No pitch. No pressure.",
+    desc: "We review your Google Ad Grant account together, identify exactly what's not working, and discuss how to fix it.",
     icon: `<path d="M15 10l4.55-2.28A1 1 0 0 1 21 8.6v6.8a1 1 0 0 1-1.45.88L15 14"/><rect width="13" height="10" x="2" y="7" rx="2"/>`,
+  },
+];
+
+// "What happens on the call" — numbered cards in the same aesthetic as the
+// steps above so the two blocks visually rhyme.
+const callAgenda = [
+  {
+    num: "01",
+    title: "First 10 minutes",
+    desc: "You tell us about your mission and current situation with your Google Ad Grant.",
+  },
+  {
+    num: "02",
+    title: "Next 15 minutes",
+    desc: "A specialist reviews your account live and shows what's actually holding it back.",
+  },
+  {
+    num: "03",
+    title: "Last 5 minutes",
+    desc: "Q&A and next steps.",
   },
 ];
 ---
@@ -99,45 +119,42 @@ const steps = [
       </div>
     </div>
 
-    <!-- Differentiator callout -->
-    <div class="mt-10 reveal">
-      <div
-        class="rounded-3xl bg-[#161514] text-[#f8f7f3] p-7 sm:p-10 relative overflow-hidden"
-      >
-        <div
-          class="absolute top-0 right-0 w-72 h-72 bg-[#aac976]/20 rounded-full blur-[120px] pointer-events-none"
+    <!-- What happens on the call -->
+    <div class="mt-16 sm:mt-20">
+      <div class="text-center max-w-3xl mx-auto mb-10 sm:mb-12 reveal">
+        <h3
+          class="text-2xl sm:text-3xl lg:text-4xl font-black text-[#161514] leading-tight mb-3"
         >
-        </div>
-        <div class="relative">
-          <div
-            class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#aac976]/15 text-[#c4ed82] text-xs font-bold uppercase tracking-wide mb-4"
-          >
-            <svg
-              width="14"
-              height="14"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2.4"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              aria-hidden="true"
-              ><polyline points="20 6 9 17 4 12"></polyline></svg
-            >
-            Not another template PDF
-          </div>
-          <p class="text-[#f5f4f0] text-base sm:text-xl leading-relaxed">
-            Most audits out there are automated template reports — you get a PDF
-            and figure it out yourself. We do it differently:
-            <span class="text-[#c4ed82] font-semibold"
-              >a real specialist meets with you</span
-            >, reviews your specific account, and gives you an honest assessment
-            based on your organisation, your audience, and your goals. Because
-            the same numbers can mean very different things for an education
-            nonprofit versus a refugee support organisation.
-          </p>
-        </div>
+          What happens <span class="gradient-text-lime">on the call</span>
+        </h3>
+        <p class="text-[#52504c] text-base sm:text-xl">
+          30 minutes. One specialist. Zero sales pitch.
+        </p>
       </div>
+
+      <ol class="grid sm:grid-cols-3 gap-5 reveal-stagger">
+        {
+          callAgenda.map((a) => (
+            <li class="glass-card lift rounded-2xl p-6 sm:p-7 relative">
+              <span class="absolute top-5 right-6 text-5xl font-black text-[#aac976]/25 leading-none select-none">
+                {a.num}
+              </span>
+              <span class="inline-flex items-center px-3 py-1 rounded-full bg-[#eaf6cc] text-[#3f5028] text-xs sm:text-sm font-bold mb-4">
+                {a.title}
+              </span>
+              <p class="text-[#52504c] text-sm sm:text-base leading-relaxed">
+                {a.desc}
+              </p>
+            </li>
+          ))
+        }
+      </ol>
+
+      <p
+        class="mt-6 text-center text-[#161514] text-sm sm:text-base font-medium reveal"
+      >
+        No preparation needed. No credit card. No commitment.
+      </p>
     </div>
 
     <div class="flex justify-center mt-12 reveal">
