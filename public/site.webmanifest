@@ -1,7 +1,7 @@
 {
-  "name": "DGTL House — Free Google Ad Grants Audit",
+  "name": "DGTL House — Free Google Ad Grant Consultation",
   "short_name": "DGTL-House",
-  "description": "Free Google Ad Grants audit for nonprofits — find out how to hit the full $10,000/month grant spend.",
+  "description": "Free Google Ad Grant consultation for nonprofits — find out what's keeping your account from spending the full $10,000/month.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",

@@ -17,17 +17,17 @@ const cases = [
     chart:
       "M0,214 C120,210 180,202 250,184 C320,166 360,132 430,106 C500,80 540,56 610,38 C660,26 695,20 720,16",
     before:
-      "$200/mo of $10K. Account at risk of suspension, almost no donations from ads.",
+      "$200/mo of $10K. Account at risk of suspension, with almost no relevant traffic from Google Ads.",
     didIt:
-      "Cleared policy violations, rebuilt account, set up tracking for donations and case referrals.",
+      "Cleared policy violations, rebuilt the account, and refined targeting to attract more relevant visitors.",
     result:
-      "$7,600/mo spent. Donations and volunteer applications every week, suspension risk gone.",
+      "$7,600/mo spent. A steady flow of relevant visitors to the website with the account back on track.",
     metrics: [
-      { label: "Donations", value: "+51/mo" },
-      { label: "Volunteer apps", value: "+29/mo" },
+      { label: "Relevant website visitors", value: "+1,240/mo" },
+      { label: "Ad-driven traffic", value: "+680%" },
     ],
     quote:
-      "For the first time the grant is actually bringing people to our door.",
+      "We finally have a reliable flow of relevant visitors from Google Ads.",
     author: "Head of Development",
   },
   {
@@ -35,24 +35,24 @@ const cases = [
     niche: "Education",
     note: "Name under NDA — after-school literacy programs.",
     period: "",
-    spendFrom: "$500",
+    spendFrom: "$150",
     spendTo: "~$10,000",
-    budget: "20× growth",
+    budget: "~66× growth",
     img: "/img/case_2.webp",
     chart:
       "M0,206 C110,202 170,190 240,176 C310,162 350,128 420,104 C480,84 520,60 600,40 C650,28 690,22 720,18",
     before:
-      "Broad keywords, low CTR, one click-through risk warning from Google.",
+      "$150/mo of $10K. Broad keywords, low CTR, and a high share of irrelevant traffic.",
     didIt:
-      "Tightened keyword themes, fixed CTR, restructured ad groups, added program-specific landing pages.",
+      "Tightened keyword targeting, restructured ad groups, improved CTR, and added program-specific landing pages.",
     result:
-      "~$10,000/mo spent. Steady stream of enrolment inquiries and volunteer sign-ups.",
+      "~$10,000/mo spent. A consistent flow of relevant visitors to the website.",
     metrics: [
-      { label: "Enrolment inquiries", value: "+62/mo" },
-      { label: "Volunteer sign-ups", value: "+38/mo" },
+      { label: "Relevant website visitors", value: "+2,180/mo" },
+      { label: "Search traffic", value: "+420%" },
     ],
     quote:
-      "We finally understand where the budget was leaking — and how to plug it.",
+      "Our campaigns finally bring the right people to the website.",
     author: "Program Director",
   },
   {
@@ -67,18 +67,18 @@ const cases = [
     chart:
       "M0,210 C120,205 180,196 240,170 C300,146 330,120 400,96 C470,72 520,52 600,36 C650,26 690,20 720,16",
     before:
-      "No Google Ad Grant. No Google Ads account. Zero grant-funded traffic.",
+      "No Google Ad Grant. No Google Ads account and no grant-funded website traffic.",
     didIt:
-      "Secured the Google Ad Grant, built the account from scratch, and scaled campaigns to maximise budget utilisation.",
+      "Secured the Google Ad Grant, built the account from scratch, and structured campaigns around relevant search traffic.",
     result:
-      "~$10,000/mo consistently spent. A steady flow of donations and volunteer sign-ups every month.",
+      "~$10,000/mo consistently spent. A steady flow of relevant visitors from Google Ads every month.",
     metrics: [
-      { label: "Donations", value: "+82/mo" },
-      { label: "Volunteer sign-ups", value: "+64/mo" },
+      { label: "Relevant website visitors", value: "+2,940/mo" },
+      { label: "Google Ads traffic", value: "+1,050%" },
     ],
     quote:
-      "We didn't even know we qualified for the grant — now it runs our adoption campaigns every month.",
-    author: "Sarah Mitchell, Exec Director",
+      "We went from no ads to a steady stream of relevant website traffic.",
+    author: "Executive Director",
   },
   {
     org: "Youth mentorship org",
@@ -92,17 +92,17 @@ const cases = [
     chart:
       "M0,224 C130,222 200,216 270,196 C340,176 380,140 450,110 C520,80 560,52 620,36 C665,24 695,18 720,15",
     before:
-      "No Google Ad Grant. No Google Ads account. Zero grant-funded traffic.",
+      "No Google Ad Grant. No Google Ads account and no grant-funded website traffic.",
     didIt:
-      "Secured the Google Ad Grant, built the account, and optimised campaigns for maximum budget utilisation.",
+      "Secured the Google Ad Grant, built the account, and optimised campaigns to maximise relevant website traffic.",
     result:
-      "~$10,000/mo consistently spent with a steady flow of donations and volunteer sign-ups.",
+      "~$10,000/mo consistently spent. A steady flow of relevant visitors to the website every month.",
     metrics: [
-      { label: "Donations", value: "+54/mo" },
-      { label: "Contact requests", value: "+46/mo" },
+      { label: "Relevant website visitors", value: "+1,860/mo" },
+      { label: "Organic + paid traffic", value: "+390%" },
     ],
     quote:
-      "We went from no ads at all to a full grant working for us every month.",
+      "The Google Ad Grant is finally working for us and bringing relevant visitors every month.",
     author: "Executive Director",
   },
 ];
@@ -143,7 +143,7 @@ const niches = [
       <h2
         class="text-3xl sm:text-4xl lg:text-5xl font-black text-[#161514] leading-tight mb-5"
       >
-        Don't believe a grant can hit $10K?
+        Don't believe a Google Ad Grant can hit $10K?
         <span class="gradient-text-lime">Here's how we did it.</span>
       </h2>
       <p class="text-[#52504c] text-base sm:text-xl">
@@ -414,7 +414,7 @@ const niches = [
     <!-- Niche pill-tags -->
     <div class="mt-12 reveal">
       <p class="text-center text-[#7a7770] text-sm font-medium mb-4">
-        Audited and scaled across every kind of mission:
+        We've helped nonprofits across every kind of mission
       </p>
       <div class="flex flex-wrap justify-center gap-2.5 max-w-3xl mx-auto">
         {
