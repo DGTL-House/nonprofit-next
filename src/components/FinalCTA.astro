@@ -1,7 +1,34 @@
 ---
-import { BOOK_CALL, CTA_PRIMARY } from "../consts";
+import { BOOK_CALL } from "../consts";
 
-const assurances = ["100% free", "30 minutes", "Google for Nonprofits Partner"];
+// Block 8 — Final CTA.
+//
+// The three-step "what happens on the call" agenda deliberately lives in
+// HowItWorks and is not repeated here: the two sections are a screen apart, so
+// restating the steps (and their "no prep / no credit card" line) reads as a
+// copy-paste rather than reassurance. This block carries what that one can't —
+// the headline promise, the call logistics, and the booking-confirmation
+// warning, which is the thing that actually costs no-shows.
+
+// Logistics shown under the button, as small icon chips.
+const logistics = [
+  {
+    label: "30 min",
+    // clock
+    icon: `<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>`,
+  },
+  {
+    label: "Google Meet",
+    // video camera
+    icon: `<path d="M15 10l4.55-2.28A1 1 0 0 1 21 8.6v6.8a1 1 0 0 1-1.45.88L15 14"/><rect width="13" height="10" x="2" y="7" rx="2"/>`,
+  },
+];
+
+const assurances = [
+  "100% free",
+  "No credit card",
+  "Google for Nonprofits Partner",
+];
 ---
 
 <!-- Block 8 — Final CTA -->
@@ -20,22 +47,83 @@ const assurances = ["100% free", "30 minutes", "Google for Nonprofits Partner"];
       <h2
         class="text-3xl sm:text-4xl lg:text-5xl font-black text-[#161514] leading-tight mb-4"
       >
-        Ready to see what's holding your Google Ad Grant{" "}
-        <span class="gradient-text-lime">back?</span>
+        Your Google Ad Grant could be doing <span class="gradient-text-lime"
+          >10&times; more.</span
+        >
       </h2>
-      <p class="text-[#52504c] text-base sm:text-xl">
-        Book a free 30-minute consultation with a Google Ad Grants specialist.
-      </p>
-      <p class="text-[#161514] text-base sm:text-xl font-semibold mt-2">
-        No prep. No credit card. No commitment.
+      <p
+        class="text-[#52504c] text-base sm:text-xl max-w-xl mx-auto leading-relaxed"
+      >
+        Book a free 30-min call with a specialist. See exactly what's holding it
+        back &mdash; live, on your account.
       </p>
 
       <a
         href={BOOK_CALL}
         class="btn-primary attention-pulse mt-8 sm:mt-10 text-base sm:text-2xl !py-3.5 sm:!py-5 !px-8 sm:!px-12"
       >
-        {CTA_PRIMARY} →
+        Book a free consultation &rarr;
       </a>
+
+      <ul
+        class="mt-5 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-[#52504c] text-sm sm:text-base font-medium"
+      >
+        {
+          logistics.map((item) => (
+            <li class="inline-flex items-center gap-2">
+              <svg
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#3f5028"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+                set:html={item.icon}
+              />
+              {item.label}
+            </li>
+          ))
+        }
+      </ul>
+
+      {/* Booking-confirmation notice. Not decorative: the call is only held
+          once the lead replies, so this is the one instruction on the page a
+          visitor must not miss. */}
+      <div
+        class="mt-8 sm:mt-10 flex items-start gap-3 sm:gap-4 text-left rounded-2xl border border-[#efe4b4] bg-[#fdf7dd] p-5 sm:p-6"
+      >
+        <svg
+          width="22"
+          height="22"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="#a8821a"
+          stroke-width="2.2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+          class="shrink-0 mt-0.5"
+        >
+          <path
+            d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+          <path d="M12 9v4"></path>
+          <path d="M12 17h.01"></path>
+        </svg>
+        <div>
+          <p class="text-[#161514] text-base sm:text-lg font-bold mb-1">
+            Confirm your booking
+          </p>
+          <p class="text-[#52504c] text-sm sm:text-base leading-relaxed">
+            You'll get an email or SMS &mdash; your call <strong
+              class="text-[#161514] font-semibold"
+              >isn't confirmed until you reply.</strong
+            >
+          </p>
+        </div>
+      </div>
 
       <ul
         class="mt-6 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-[#52504c] text-sm sm:text-base font-medium"
