@@ -23,12 +23,6 @@ const logistics = [
     icon: `<path d="M15 10l4.55-2.28A1 1 0 0 1 21 8.6v6.8a1 1 0 0 1-1.45.88L15 14"/><rect width="13" height="10" x="2" y="7" rx="2"/>`,
   },
 ];
-
-const assurances = [
-  "100% free",
-  "No credit card",
-  "Google for Nonprofits Partner",
-];
 ---
 
 <!-- Block 8 — Final CTA -->
@@ -124,31 +118,6 @@ const assurances = [
           </p>
         </div>
       </div>
-
-      <ul
-        class="mt-6 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-[#52504c] text-sm sm:text-base font-medium"
-      >
-        {
-          assurances.map((a) => (
-            <li class="inline-flex items-center gap-1.5">
-              <svg
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="#3f5028"
-                stroke-width="2.6"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                aria-hidden="true"
-              >
-                <polyline points="20 6 9 17 4 12" />
-              </svg>
-              {a}
-            </li>
-          ))
-        }
-      </ul>
     </div>
   </div>
 </section>
